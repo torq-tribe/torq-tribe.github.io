@@ -4,191 +4,220 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Torq Tribe Privacy Policy" />
+  <link rel="icon" href="./assets/Logo%20new.png" />
   <title>Torq Tribe — Privacy Policy</title>
+
   <style>
     :root{
-      --bg:#0b0b0b;
-      --card:#14110e;
-      --text:#f2eadf;
-      --muted:#c9b8a4;
+      --bg:#070707;
+      --panel: rgba(18, 14, 10, .72);
+      --stroke: rgba(201, 137, 59, .22);
+      --text:#f4ece2;
+      --muted:#cbb9a6;
       --accent:#c9893b;
-      --border:rgba(201,137,59,.25);
+      --shadow: 0 24px 80px rgba(0,0,0,.42);
     }
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
     body{
       margin:0;
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(201,137,59,.12), transparent 60%),
-                  radial-gradient(900px 500px at 90% 20%, rgba(138,90,34,.10), transparent 55%),
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(201,137,59,.14), transparent 60%),
+                  radial-gradient(900px 500px at 95% 10%, rgba(138,90,34,.12), transparent 55%),
                   var(--bg);
-      color:var(--text);
-      line-height:1.6;
+      line-height:1.62;
     }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 64px}
-    header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:14px 16px; border:1px solid var(--border); background:rgba(20,17,14,.72);
-      border-radius:16px; backdrop-filter: blur(8px);
+    a{ color: var(--accent); text-decoration:none }
+    a:hover{ text-decoration: underline }
+    .wrap{ max-width: 980px; margin:0 auto; padding: 18px 18px 64px; }
+
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(10,10,10,.35);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      position: sticky; top: 12px; z-index: 30;
     }
-    .brand{display:flex; align-items:center; gap:12px}
-    .logo{
-      width:40px; height:40px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(201,137,59,.95), rgba(138,90,34,.95));
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .brand img{ width: 34px; height: 34px; border-radius: 12px; }
+    .brand .title{ font-weight: 800; letter-spacing: .2px; }
+    .brand .meta{ font-size: 12px; color: var(--muted); margin-top: 1px; }
+    .actions{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
+    .actions a{
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
     }
-    h1{font-size:18px; margin:0}
-    nav{display:flex; gap:14px; font-size:14px}
-    main{
-      margin-top:16px;
-      border:1px solid var(--border);
-      background: rgba(20,17,14,.72);
-      border-radius:18px;
-      padding:18px 16px 12px;
-      box-shadow: 0 16px 60px rgba(0,0,0,.30);
+    .actions a:hover{
+      border-color: rgba(201,137,59,.20);
+      background: rgba(201,137,59,.06);
+      text-decoration:none;
     }
-    h2{font-size:18px; margin:18px 0 8px}
-    p,li{color:var(--muted); font-size:14.5px}
-    ul{margin-top:8px}
-    .note{
-      margin:14px 0;
-      border:1px dashed rgba(201,137,59,.35);
-      background: rgba(20,17,14,.45);
-      border-radius:16px;
-      padding:12px 12px 10px;
+
+    .doc{
+      margin-top: 16px;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 18px 16px 14px;
+      box-shadow: var(--shadow);
     }
+
+    h1{ margin:0 0 10px; font-size: 18px; }
+    h2{ margin: 18px 0 8px; font-size: 16px; }
+    p, li{ color: var(--muted); font-size: 14.5px; }
+    ul{ margin-top: 8px; }
+
+    .notice{
+      border: 1px dashed rgba(201,137,59,.40);
+      background: rgba(0,0,0,.22);
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+      margin: 12px 0 16px;
+    }
+    .notice strong{ color: rgba(244,236,226,.98); }
     .kbd{
-      display:inline-block; padding:1px 8px; border-radius:10px;
-      border:1px solid rgba(201,137,59,.35); background: rgba(0,0,0,.2);
-      color: var(--text); font-size:12px;
+      display:inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,137,59,.30);
+      background: rgba(0,0,0,.25);
+      color: rgba(244,236,226,.95);
+      font-size: 12px;
     }
-    footer{margin-top:18px; color:var(--muted); font-size:13px}
+
+    footer{
+      margin-top: 14px;
+      color: rgba(203,185,166,.92);
+      font-size: 13px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <header>
+
+    <div class="top">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img src="./assets/Logo%20new.png" alt="Torq Tribe logo" />
         <div>
-          <h1>Torq Tribe — Privacy Policy</h1>
-          <div style="font-size:12px; color:var(--muted); margin-top:2px;">
-            Effective date: <span class="kbd">[PUT DATE HERE]</span>
-          </div>
+          <div class="title">Torq Tribe — Privacy Policy</div>
+          <div class="meta">Effective date: <span class="kbd">[SET DATE]</span></div>
         </div>
       </div>
-      <nav>
+      <div class="actions">
         <a href="./index.html">Home</a>
         <a href="mailto:torqtribe@icloud.com">Support</a>
-      </nav>
-    </header>
+      </div>
+    </div>
 
-    <main>
+    <section class="doc">
+      <h1>Privacy Policy</h1>
       <p>
-        This Privacy Policy explains how <strong>Torq Tribe</strong> (“we,” “us,” “our”) collects, uses, and shares
-        information when you use our mobile app and related services (the “Service”).
+        This Privacy Policy explains how <strong>Torq Tribe</strong> (“we,” “us,” “our”) collects, uses, and shares information
+        when you use our mobile app and related services (the “Service”).
       </p>
 
-      <div class="note">
-        <strong>Fitness/Health Disclaimer (Important):</strong>
+      <div class="notice">
+        <strong>Fitness / Health Disclaimer (Important):</strong>
         <p style="margin:8px 0 0;">
-          Torq Tribe provides general fitness and educational information only. It is <strong>not</strong> medical advice and is not a substitute for professional guidance.
-          Always consult a qualified healthcare professional before beginning any new fitness program. Stop immediately if you experience pain, dizziness, faintness, chest pain,
-          or shortness of breath, and seek medical attention as appropriate. In an emergency, call your local emergency number.
+          Torq Tribe provides general fitness and educational information only. It is <strong>not medical advice</strong> and is not a substitute
+          for professional guidance. Consult a qualified healthcare provider before beginning any new exercise program. Stop immediately if you
+          experience pain, dizziness, faintness, chest pain, or shortness of breath, and seek medical attention as appropriate. In an emergency,
+          call your local emergency number.
         </p>
       </div>
 
       <h2>1) Information we collect</h2>
-      <p>We collect information in three main ways: (a) information you provide, (b) information generated by your use of the Service, and (c) information from third parties you choose to connect.</p>
+      <p>We collect information in three ways: (a) information you provide, (b) information generated by your use, and (c) third-party data if you choose to connect it (future).</p>
 
       <h2>1A) Information you provide</h2>
       <ul>
-        <li><strong>Account information:</strong> When you create an account or sign in, we use Supabase Auth to authenticate you (e.g., email and authentication identifiers/tokens managed by Supabase Auth).</li>
-        <li><strong>Onboarding & profile data:</strong> You can provide profile details used to personalize your plan, such as name, gender, age, height, weight, estimated/provided body fat percentage, strength experience, body type, fitness goal and timeframe, session length, sessions per week, activity level, available equipment, workout style, followed influencers, favorite exercises, injuries, nutrition preference, daily calorie intake, and optional estimated 1RM lifts (e.g., squat/deadlift/bench/OHP).:contentReference[oaicite:6]{index=6}</li>
-        <li><strong>Support communications:</strong> If you contact us, we receive the information you include in your message.</li>
+        <li><strong>Account information:</strong> When you sign up/sign in, we use Supabase Auth to authenticate your account (e.g., email and auth identifiers/tokens used for login).</li>
+        <li><strong>Onboarding/profile information:</strong> You may enter fitness profile details such as goals, preferences, experience, schedule, available equipment, session length, injuries, and related inputs to personalize your plan.</li>
+        <li><strong>Support communications:</strong> If you email us, we receive the information you include in your message.</li>
       </ul>
 
-      <h2>1B) Information generated by your use of the Service</h2>
+      <h2>1B) Information generated by your use</h2>
       <ul>
-        <li><strong>Workout plans and progress:</strong> The Service generates and retrieves your workout plan from the backend and may store workout completion history. Your workout plan is generated and fetched via Supabase-backed services.:contentReference[oaicite:7]{index=7}</li>
-        <li><strong>Local app data (on-device):</strong> To improve performance and reliability, the app may cache certain data locally (for example, workout history cached in device storage such as UserDefaults).:contentReference[oaicite:8]{index=8}</li>
-        <li><strong>Basic technical data:</strong> Like most online services, our infrastructure providers may process basic log data (e.g., IP address, timestamps, request metadata) for security and operational purposes. We do not use this to try to identify you beyond providing and securing the Service.</li>
+        <li><strong>Workout plan and activity:</strong> We generate and retrieve your workout plan and may store workout progress/history to provide the Service.</li>
+        <li><strong>On-device caching:</strong> The app may store limited data locally on your device to improve performance and reliability (for example, cached workout history).</li>
+        <li><strong>Operational logs:</strong> Like most services, infrastructure providers may process basic technical logs (e.g., timestamps, IP address, request metadata) for security and service operation.</li>
       </ul>
 
-      <h2>1C) Third-party connections (future)</h2>
+      <h2>1C) Third-party connections (planned)</h2>
       <ul>
-        <li><strong>Apple Health (planned):</strong> We intend to add Apple Health integration later. If enabled, you will choose whether to allow Torq Tribe to read and/or write specific Health data. We will update this policy before shipping that feature.</li>
-        <li><strong>Analytics (planned):</strong> We intend to add analytics later to understand app performance and improve user experience. We will update this policy before enabling analytics, including what data is collected and how to opt out (if applicable).</li>
+        <li><strong>Apple Health (planned):</strong> If added, you will control whether Torq Tribe can read/write specific Apple Health data. We will update this policy before launching this feature.</li>
+        <li><strong>Analytics (planned):</strong> If added, we will disclose what data is collected, how it is used, and any available choices/controls before enabling analytics.</li>
       </ul>
 
       <h2>2) How we use your information</h2>
       <ul>
-        <li>Provide the Service (create accounts, authenticate users, store profiles, generate and deliver workout plans, and save workout progress).</li>
-        <li>Personalize your experience based on the information you provide (e.g., goals, equipment, preferences, injuries).</li>
-        <li>Maintain safety, security, and integrity of the Service (fraud prevention, troubleshooting, and system monitoring).</li>
-        <li>Communicate with you (support requests, important updates, and policy changes).</li>
-        <li>Improve the Service (bug fixes, performance improvements; and, in the future, analytics if enabled).</li>
+        <li>Provide and operate the Service (authentication, profile storage, plan generation, and progress tracking).</li>
+        <li>Personalize workouts based on your inputs (e.g., goals, equipment, injuries, preferences).</li>
+        <li>Maintain security, prevent abuse, debug issues, and improve reliability.</li>
+        <li>Respond to your support requests and communicate important updates.</li>
       </ul>
 
       <h2>3) How we share your information</h2>
       <p>We do not sell your personal information. We share information only as needed to operate the Service:</p>
       <ul>
-        <li><strong>Service providers:</strong> We use Supabase as our backend provider for authentication and database storage. Your profile and workout-related data is stored and processed through this infrastructure.:contentReference[oaicite:9]{index=9}</li>
-        <li><strong>Content links:</strong> The app may display links to third-party content (e.g., YouTube tutorial links). If you open a third-party link, your activity is governed by that third party’s policies (not ours).:contentReference[oaicite:10]{index=10}</li>
-        <li><strong>Legal/safety:</strong> We may disclose information if required by law, or to protect rights, safety, and security (e.g., responding to valid legal requests).</li>
+        <li><strong>Service providers:</strong> We use Supabase for authentication and database services. Your account and profile data are stored/processed via these services as needed to provide the app.</li>
+        <li><strong>Third-party links:</strong> The app may include links to third-party content (e.g., tutorials). When you open a third-party link, that third party’s policies apply.</li>
+        <li><strong>Legal/safety:</strong> We may disclose information if required by law or to protect rights, safety, and security.</li>
       </ul>
 
       <h2>4) Data retention</h2>
       <p>
-        We retain your information for as long as needed to provide the Service, comply with legal obligations, resolve disputes,
-        and enforce agreements. Some data may remain in backups for a limited period after deletion.
+        We retain information for as long as needed to provide the Service, comply with legal obligations, resolve disputes, and enforce agreements.
+        Some information may remain in backups for a limited period.
       </p>
 
-      <h2>5) Your choices and rights</h2>
+      <h2>5) Your choices and requests</h2>
       <ul>
-        <li><strong>Access/updates:</strong> You may update certain profile information within the app where available.</li>
-        <li><strong>Account deletion:</strong> To request deletion of your account and associated data, email us at <a href="mailto:torqtribe@icloud.com">torqtribe@icloud.com</a> from the email address associated with your account.</li>
-        <li><strong>Device controls:</strong> You can delete the app to remove locally cached data from your device. Note: server-stored data may still exist until you request account deletion.</li>
+        <li><strong>Update info:</strong> You may update certain profile information within the app where available.</li>
+        <li><strong>Deletion request:</strong> To request account/data deletion, email <a href="mailto:torqtribe@icloud.com">torqtribe@icloud.com</a> from the email associated with your account.</li>
+        <li><strong>Device data:</strong> Uninstalling the app removes locally stored data from your device, but server-stored data remains until deleted per your request.</li>
       </ul>
 
       <h2>6) Security</h2>
       <p>
-        We use reasonable administrative, technical, and organizational safeguards designed to protect your information.
-        However, no method of transmission or storage is 100% secure, and we cannot guarantee absolute security.
+        We use reasonable safeguards designed to protect your information. However, no system is perfectly secure, and we cannot guarantee absolute security.
       </p>
 
       <h2>7) Children’s privacy</h2>
       <p>
-        Torq Tribe is not intended for children under 13 (or the minimum age required in your jurisdiction). We do not knowingly
-        collect personal information from children. If you believe a child has provided information, contact us and we will take appropriate steps.
+        Torq Tribe is not intended for children under 13 (or the minimum age required in your jurisdiction). We do not knowingly collect personal information from children.
       </p>
 
-      <h2>8) International processing</h2>
+      <h2>8) Changes to this policy</h2>
       <p>
-        Your information may be processed by our service providers in countries other than where you live, depending on your configuration and infrastructure locations.
-        These countries may have different data protection laws.
+        We may update this policy from time to time. We will post the updated version here and update the effective date above.
       </p>
 
-      <h2>9) Changes to this policy</h2>
+      <h2>9) Contact</h2>
       <p>
-        We may update this Privacy Policy from time to time. We will post the updated version here and update the effective date above.
-        Material changes may also be communicated in-app where appropriate.
-      </p>
-
-      <h2>10) Contact us</h2>
-      <p>
-        If you have questions, requests, or concerns about privacy, contact:
-        <br/>
-        <strong>Torq Tribe Support</strong> — <a href="mailto:torqtribe@icloud.com">torqtribe@icloud.com</a>
+        Privacy questions and requests: <a href="mailto:torqtribe@icloud.com">torqtribe@icloud.com</a>
       </p>
 
       <footer>
-        <p style="margin:0;">
-          <a href="./index.html">← Back to Home</a>
-        </p>
+        <div>© <span id="y"></span> Torq Tribe</div>
+        <div><a href="./index.html">Back to Home</a></div>
       </footer>
-    </main>
+    </section>
+
   </div>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
