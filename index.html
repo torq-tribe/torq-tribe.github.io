@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitSpire - Primal Fitness Beta</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1E1E1E;
+            --primary: #FF8C00; /* Dark Orange for Primal feel */
+            --text-main: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --spacing: 20px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px var(--spacing);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #FF8C00, #FF4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+
+        /* Sections */
+        section {
+            margin: 50px 0;
+            padding: 30px;
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-top: 0;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: opacity 0.2s;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        /* Privacy Text */
+        .legal-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        
+        footer {
+            text-align: center;
+            color: var(--text-secondary);
+            padding: 40px 0;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>FitSpire</h1>
+            <div class="tagline">Awaken Your Primal Strength</div>
+        </header>
+
+        <section id="beta">
+            <h2>Join the Beta</h2>
+            <p>FitSpire is currently in closed beta. We are looking for testers to help us refine the primal workout experience.</p>
+            <a href="#" class="btn">Download on TestFlight</a>
+        </section>
+
+        <section id="contact">
+            <h2>Feedback & Support</h2>
+            <p>Found a bug? Have a feature request? We need your input to make FitSpire better.</p>
+            <p>Please email us directly with any issues.</p>
+            <a href="mailto:support@fitspire.app" class="btn btn-outline">Email Support</a>
+        </section>
+
+        <section id="privacy">
+            <h2>Privacy Policy</h2>
+            <div class="legal-text">
+                <p><strong>Last Updated: January 10, 2026</strong></p>
+                <p>FitSpire ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how your personal information is collected, used, and disclosed by FitSpire.</p>
+                
+                <h3>1. Information We Collect</h3>
+                <p><strong>Health Data:</strong> We request access to your HealthKit data (workouts, heart rate) to track your fitness progress. This data stays on your device and is not sold to third parties.</p>
+                <p><strong>Usage Data:</strong> We may collect anonymous crash reports and usage statistics to improve app stability.</p>
+
+                <h3>2. How We Use Your Information</h3>
+                <p>We use the information we collect to operate and maintain the App, improve your experience, and provide customer support.</p>
+
+                <h3>3. Data Security</h3>
+                <p>We implement reasonable security measures to protect your information. However, no security system is impenetrable.</p>
+
+                <h3>4. Contact Us</h3>
+                <p>If you have questions about this Privacy Policy, please contact us at support@fitspire.app.</p>
+            </div>
+        </section>
+
+        <footer>
+            &copy; 2026 FitSpire. All rights reserved.
+        </footer>
+    </div>
+
+</body>
+</html>
