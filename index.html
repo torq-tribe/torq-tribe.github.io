@@ -3,177 +3,359 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Torq Tribe — a personalized fitness app that helps you plan workouts and follow short-form exercise tutorials." />
+  <meta name="description" content="Torq Tribe — prehistoric-themed fitness planning with personalized workouts." />
+
+  <!-- Favicon -->
+  <link rel="icon" href="./assets/Logo%20new.png" />
+
   <title>Torq Tribe</title>
+
   <style>
     :root{
-      --bg:#0b0b0b;
-      --card:#14110e;
-      --text:#f2eadf;
-      --muted:#c9b8a4;
+      --bg:#070707;
+      --panel: rgba(18, 14, 10, .72);
+      --panel2: rgba(18, 14, 10, .55);
+      --stroke: rgba(201, 137, 59, .22);
+      --stroke2: rgba(201, 137, 59, .38);
+      --text:#f4ece2;
+      --muted:#cbb9a6;
       --accent:#c9893b;
       --accent2:#8a5a22;
-      --border:rgba(201,137,59,.25);
+      --shadow: 0 24px 80px rgba(0,0,0,.42);
     }
-    *{box-sizing:border-box}
+
+    *{ box-sizing:border-box }
+    html,body{ height:100% }
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 20% 0%, rgba(201,137,59,.12), transparent 60%),
-                  radial-gradient(900px 500px at 90% 20%, rgba(138,90,34,.10), transparent 55%),
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 20% 0%, rgba(201,137,59,.14), transparent 60%),
+                  radial-gradient(900px 500px at 95% 10%, rgba(138,90,34,.12), transparent 55%),
                   var(--bg);
-      color:var(--text);
       line-height:1.55;
+      overflow-x:hidden;
     }
-    a{color:var(--accent); text-decoration:none}
-    a:hover{text-decoration:underline}
-    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 64px}
-    header{
-      display:flex; align-items:center; justify-content:space-between; gap:16px;
-      padding:14px 16px; border:1px solid var(--border); background:rgba(20,17,14,.72);
-      border-radius:16px; backdrop-filter: blur(8px);
-      position: sticky; top: 12px; z-index: 10;
+
+    a{ color: var(--accent); text-decoration:none }
+    a:hover{ text-decoration: underline }
+
+    .wrap{ max-width: 1100px; margin:0 auto; padding: 18px 18px 64px; }
+
+    /* Top nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding: 12px 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(10,10,10,.35);
+      border-radius: 16px;
+      backdrop-filter: blur(10px);
+      position: sticky; top: 12px; z-index: 30;
     }
-    .brand{display:flex; align-items:center; gap:12px}
-    .logo{
-      width:40px; height:40px; border-radius:12px;
-      background: linear-gradient(135deg, rgba(201,137,59,.95), rgba(138,90,34,.95));
-      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    .brand{ display:flex; align-items:center; gap:10px; min-width: 220px; }
+    .brand img{
+      width: 36px; height: 36px; border-radius: 12px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.35);
     }
-    .brand h1{font-size:16px; margin:0}
-    nav{display:flex; gap:14px; font-size:14px}
-    .hero{padding:42px 6px 22px}
-    .hero h2{
-      font-size:44px; line-height:1.1; margin:0 0 12px;
-      letter-spacing:-.02em;
+    .brand .name{ font-weight: 700; letter-spacing: .2px; }
+    .brand .tag{ font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    .links{ display:flex; gap: 14px; flex-wrap: wrap; justify-content:flex-end; }
+    .links a{
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
     }
-    .hero p{margin:0 0 18px; color:var(--muted); font-size:18px; max-width:70ch}
-    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top:14px}
-    .chip{
-      border:1px solid var(--border);
-      background: rgba(20,17,14,.65);
-      padding:8px 10px; border-radius:999px;
-      font-size:13px; color:var(--muted)
+    .links a:hover{
+      border-color: rgba(201,137,59,.20);
+      background: rgba(201,137,59,.06);
+      text-decoration:none;
     }
-    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:14px; margin-top:18px}
-    .card{
-      grid-column: span 6;
-      border:1px solid var(--border);
-      background: rgba(20,17,14,.72);
-      border-radius:18px;
-      padding:16px 16px 14px;
-      box-shadow: 0 16px 60px rgba(0,0,0,.30);
+
+    /* Hero */
+    .hero{
+      margin-top: 16px;
+      border: 1px solid var(--stroke);
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.75)),
+        url("./assets/top%20banner.png");
+      background-size: cover;
+      background-position: center;
+      position: relative;
     }
-    .card h3{margin:0 0 8px; font-size:16px}
-    .card p{margin:0; color:var(--muted); font-size:14.5px}
-    .cta{
-      margin-top:18px;
-      display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+
+    .heroInner{
+      padding: 34px 18px 20px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 16px;
+      position: relative;
     }
+
+    /* Side peeking character */
+    .peeker{
+      position:absolute;
+      right: -16px;
+      top: 72px;
+      width: min(360px, 42vw);
+      opacity: .96;
+      pointer-events:none;
+      filter: drop-shadow(0 22px 60px rgba(0,0,0,.55));
+    }
+
+    .heroTitle{
+      display:flex; flex-direction:column; gap: 14px;
+      padding: 14px 14px 10px;
+      border-radius: 18px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(201,137,59,.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .wordmark{
+      width: min(520px, 100%);
+      height: auto;
+    }
+
+    .subhead{
+      margin:0;
+      color: rgba(244,236,226,.88);
+      font-size: 17px;
+      max-width: 70ch;
+    }
+
+    .ctaRow{ display:flex; gap: 10px; flex-wrap: wrap; margin-top: 4px; }
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
-      padding:10px 14px; border-radius:12px;
-      border:1px solid rgba(201,137,59,.55);
-      background: linear-gradient(135deg, rgba(201,137,59,.18), rgba(138,90,34,.14));
-      color:var(--text); font-weight:600; font-size:14px;
+      padding: 10px 14px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 14px;
+      border: 1px solid rgba(201,137,59,.55);
+      background: linear-gradient(135deg, rgba(201,137,59,.20), rgba(138,90,34,.14));
+      color: var(--text);
+      text-decoration:none;
     }
-    .btn:hover{filter:brightness(1.05); text-decoration:none}
-    .fineprint{
-      margin-top:22px;
-      border:1px dashed rgba(201,137,59,.35);
-      background: rgba(20,17,14,.45);
-      border-radius:16px;
-      padding:14px 14px 12px;
-      color: var(--muted);
-      font-size: 13.5px;
+    .btn:hover{ filter: brightness(1.06); text-decoration:none; }
+    .btn.secondary{
+      border-color: rgba(201,137,59,.24);
+      background: rgba(0,0,0,.28);
+      font-weight: 650;
+      color: rgba(244,236,226,.92);
     }
-    footer{margin-top:34px; color:var(--muted); font-size:13px}
-    @media (max-width: 820px){
-      .hero h2{font-size:34px}
-      .card{grid-column: span 12}
-      header{position:relative; top:auto}
+
+    /* Preview card */
+    .preview{
+      border-radius: 18px;
+      border: 1px solid rgba(201,137,59,.18);
+      background: rgba(0,0,0,.22);
+      backdrop-filter: blur(10px);
+      padding: 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      align-items: center;
+      position: relative;
+    }
+    .preview h3{ margin: 0; font-size: 14px; color: rgba(244,236,226,.92); align-self:flex-start; }
+    .previewImg{
+      width: 100%;
+      max-width: 320px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,137,59,.18);
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      background: rgba(0,0,0,.20);
+    }
+    .tiny{
+      margin:0;
+      font-size: 12.5px;
+      color: rgba(203,185,166,.92);
+      align-self:flex-start;
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 16px;
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+
+    .card{
+      grid-column: span 6;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 16px 16px 14px;
+      box-shadow: 0 18px 70px rgba(0,0,0,.28);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::after{
+      content:"";
+      position:absolute; inset:-2px;
+      background:
+        radial-gradient(600px 300px at 20% 10%, rgba(201,137,59,.10), transparent 55%),
+        radial-gradient(600px 300px at 80% 70%, rgba(138,90,34,.10), transparent 55%);
+      pointer-events:none;
+    }
+
+    .card h4{ margin:0 0 6px; font-size: 16px; position: relative; z-index: 2; }
+    .card p{ margin:0; color: var(--muted); font-size: 14.5px; position: relative; z-index: 2; }
+
+    .wide{ grid-column: span 12; }
+
+    .disclaimer{
+      border: 1px dashed rgba(201,137,59,.40);
+      background: rgba(18,14,10,.55);
+      border-radius: 18px;
+      padding: 14px 14px 12px;
+      color: rgba(203,185,166,.96);
+    }
+    .disclaimer strong{ color: rgba(244,236,226,.98); }
+
+    /* “Modern web” texture stripe using wooden dumbbell image as a subtle tile */
+    .textureStripe{
+      margin-top: 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,137,59,.16);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.75), rgba(0,0,0,.20), rgba(0,0,0,.75)),
+        url("./assets/wooden%20dumbbell.jpg");
+      background-size: 520px auto;
+      background-position: center;
+      padding: 14px;
+      color: rgba(244,236,226,.92);
+      box-shadow: 0 18px 70px rgba(0,0,0,.22);
+    }
+
+    footer{
+      margin-top: 18px;
+      color: rgba(203,185,166,.92);
+      font-size: 13px;
+      display:flex;
+      flex-wrap: wrap;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    @media (max-width: 880px){
+      .heroInner{ grid-template-columns: 1fr; }
+      .peeker{ display:none; }
+      .card{ grid-column: span 12; }
+      .nav{ position: relative; top:auto; }
+      .brand{ min-width: 0; }
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
-    <header>
+
+    <div class="nav">
       <div class="brand">
-        <div class="logo" aria-hidden="true"></div>
+        <img src="./assets/Logo%20new.png" alt="Torq Tribe logo" />
         <div>
-          <h1>Torq Tribe</h1>
-          <div style="font-size:12px; color:var(--muted); margin-top:2px;">Prehistoric-themed fitness planning</div>
+          <div class="name">Torq Tribe</div>
+          <div class="tag">Prehistoric-themed fitness planning</div>
         </div>
       </div>
-      <nav>
-        <a href="./privacy.html">Privacy Policy</a>
+
+      <div class="links">
+        <a href="./privacy.html">Privacy</a>
         <a href="mailto:torqtribe@icloud.com">Support</a>
-      </nav>
-    </header>
+      </div>
+    </div>
 
     <section class="hero">
-      <h2>Train smarter. Stay consistent.</h2>
-      <p>
-        Torq Tribe is a fitness app that helps you generate a personalized workout plan and follow short-form
-        exercise tutorials—so you spend less time planning and more time training.
-      </p>
+      <img class="peeker" src="./assets/Sidepeeking.png" alt="" aria-hidden="true" />
 
-      <div class="cta">
-        <a class="btn" href="./privacy.html">Read Privacy Policy</a>
-        <a class="btn" href="mailto:torqtribe@icloud.com">Contact Support</a>
-      </div>
+      <div class="heroInner">
+        <div class="heroTitle">
+          <!-- Wordmark -->
+          <img class="wordmark" src="./assets/Pasted%20Graphic.png" alt="Torq Tribe" />
 
-      <div class="chips" aria-label="Key features">
-        <div class="chip">Personalized onboarding profile</div>
-        <div class="chip">Workout plan generation</div>
-        <div class="chip">Creator tutorial links</div>
-        <div class="chip">Progress & workout history</div>
-      </div>
+          <p class="subhead">
+            Personalized workout planning with a fun prehistoric vibe — built to help you stay consistent and train safely.
+          </p>
 
-      <div class="grid">
-        <div class="card">
-          <h3>Personalized setup</h3>
-          <p>
-            During onboarding, you can enter training goals and preferences (e.g., equipment available, session length,
-            experience level, injuries, and more) to tailor your plan.:contentReference[oaicite:3]{index=3}
+          <div class="ctaRow">
+            <a class="btn" href="./privacy.html">Read Privacy Policy</a>
+            <a class="btn secondary" href="mailto:torqtribe@icloud.com">Contact Support</a>
+            <!-- Later: Add an App Store button here after beta/launch -->
+          </div>
+
+          <p class="tiny">
+            Coming soon: optional Apple Health integration and analytics. We’ll update our policy before enabling them.
           </p>
         </div>
-        <div class="card">
-          <h3>Powered by Supabase</h3>
-          <p>
-            Accounts are handled with Supabase Auth, and your profile is stored securely in Supabase so your plan can be generated and retrieved across sessions.:contentReference[oaicite:4]{index=4}
-          </p>
-        </div>
-        <div class="card">
-          <h3>Workout plan + history</h3>
-          <p>
-            Your plan is fetched from the server, and workout history may be cached on-device to improve performance and reliability.:contentReference[oaicite:5]{index=5}
-          </p>
-        </div>
-        <div class="card">
-          <h3>Future integrations</h3>
-          <p>
-            Apple Health and analytics are not enabled yet. If/when they’re added, this site and the privacy policy will be updated before those features ship.
-          </p>
+
+        <div class="preview">
+          <h3>App preview</h3>
+          <img class="previewImg" src="./assets/Splash%20Screen.png" alt="Torq Tribe app preview" />
+          <p class="tiny">This is a preview image. Features may change during beta.</p>
         </div>
       </div>
-
-      <div class="fineprint">
-        <strong>Fitness/Health Disclaimer (Important):</strong><br/>
-        Torq Tribe provides general fitness and educational information only. It is <strong>not</strong> medical advice,
-        is not a substitute for professional guidance, and should not be used to diagnose, treat, or prevent any condition.
-        Always consult a qualified healthcare professional before starting any fitness program—especially if you have any
-        medical conditions, injuries, are pregnant, or take medications. Stop immediately if you feel pain, dizziness,
-        faintness, or shortness of breath, and seek medical attention as appropriate. In an emergency, call your local emergency number.
-      </div>
-
-      <footer>
-        <div>© <span id="y"></span> Torq Tribe</div>
-        <div style="margin-top:6px;">
-          Questions? Email <a href="mailto:torqtribe@icloud.com">torqtribe@icloud.com</a>
-        </div>
-      </footer>
     </section>
+
+    <div class="textureStripe">
+      <strong>What you get:</strong> a plan tailored to your goals & preferences, a clean experience, and clear guardrails around safety.
+    </div>
+
+    <section class="section">
+      <div class="card">
+        <h4>Personalized onboarding</h4>
+        <p>
+          Enter goals, schedule, equipment, experience level, and injury considerations so the plan matches your situation.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Account + secure backend</h4>
+        <p>
+          Accounts and profile data are handled via Supabase Auth and stored in Supabase to power your plan and sync across sessions.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Plans, workouts, history</h4>
+        <p>
+          Your plan is generated and fetched from the backend. Some data may be cached on-device to improve performance.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Roadmap</h4>
+        <p>
+          Apple Health + analytics are planned for later. If/when added, we’ll disclose exactly what’s collected and how it’s used before shipping.
+        </p>
+      </div>
+
+      <div class="card wide disclaimer">
+        <strong>Fitness / Health Disclaimer (read this):</strong><br/>
+        Torq Tribe provides general fitness and educational information only. It is <strong>not medical advice</strong> and is not a substitute
+        for a qualified professional. Consult a physician or qualified healthcare provider before starting any new fitness program,
+        especially if you have any medical condition, injuries, are pregnant, or take medications. Stop immediately if you experience
+        pain, dizziness, faintness, chest pain, or shortness of breath, and seek medical attention as appropriate. In an emergency,
+        call your local emergency number.
+      </div>
+    </section>
+
+    <footer>
+      <div>© <span id="y"></span> Torq Tribe</div>
+      <div>
+        <a href="./privacy.html">Privacy Policy</a>
+        &nbsp;•&nbsp;
+        <a href="mailto:torqtribe@icloud.com">torqtribe@icloud.com</a>
+      </div>
+    </footer>
+
   </div>
 
   <script>
