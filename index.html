@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FitSpire - Awaken Your Primal Strength</title>
+    <title>Torq Tribe - Awaken Your Primal Strength</title>
     <style>
         :root {
             --bg-dark: #0a0a0a;
@@ -49,98 +49,78 @@
         }
 
         h2 {
-            font-size: 3rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         p {
+            font-size: 1.125rem;
             color: var(--text-muted);
-            font-size: 1.1rem;
-            max-width: 600px;
+            margin-bottom: 1.5rem;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: color 0.3s ease;
+        /* --- LAYOUT --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        /* --- BUTTONS --- */
-        .btn {
-            display: inline-block;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: linear-gradient(45deg, var(--primary), var(--accent));
-            color: white;
-            box-shadow: 0 10px 20px rgba(255, 69, 0, 0.2);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 15px 30px rgba(255, 69, 0, 0.4);
-        }
-
-        .btn-secondary {
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            margin-left: 10px;
-        }
-
-        .btn-secondary:hover {
-            background: rgba(255,255,255,0.1);
-            border-color: white;
+        section {
+            padding: 100px 0;
         }
 
         /* --- NAVIGATION --- */
         nav {
+            height: var(--nav-height);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             position: fixed;
             top: 0;
             width: 100%;
-            height: var(--nav-height);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
             z-index: 1000;
             background: rgba(10, 10, 10, 0.8);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .logo img {
-            height: 40px;
-            width: auto;
+        .logo {
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            text-decoration: none;
         }
 
         .nav-links a {
-            margin-left: 40px;
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
             font-size: 0.9rem;
-            opacity: 0.7;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
         .nav-links a:hover {
-            opacity: 1;
             color: var(--primary);
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO --- */
         .hero {
             height: 100vh;
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            text-align: center;
+        }
+
+        .hero-content {
+            z-index: 2;
+            max-width: 800px;
         }
 
         .hero-bg {
@@ -149,256 +129,144 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('assets/top banner.png'); /* Using your banner */
-            background-size: cover;
-            background-position: center;
-            opacity: 0.4;
-            z-index: -1;
-            mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-            -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+            background: radial-gradient(circle at center, rgba(255, 140, 0, 0.15) 0%, rgba(10, 10, 10, 1) 70%);
+            z-index: 1;
         }
 
-        .hero-content {
-            z-index: 2;
-            padding: 0 20px;
-            animation: fadeIn Up 1s ease-out;
+        .cta-button {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 10px 30px rgba(255, 140, 0, 0.3);
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
         }
 
-        /* --- FLUID SECTIONS --- */
-        section {
-            padding: 120px 10%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            min-height: 80vh;
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 40px rgba(255, 140, 0, 0.4);
         }
 
-        .content-block {
-            flex: 1;
-            padding-right: 50px;
+        /* --- FEATURES --- */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
         }
 
-        .image-block {
-            flex: 1;
-            position: relative;
-            display: flex;
-            justify-content: center;
-        }
-
-        .image-block img {
-            max-width: 100%;
+        .feature-card {
+            background: var(--bg-card);
+            padding: 40px;
             border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-            transition: transform 0.5s ease;
-        }
-        
-        .image-block img:hover {
-            transform: scale(1.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s;
         }
 
-        /* Reversing layout for alternate sections */
-        section.reverse {
-            flex-direction: row-reverse;
-        }
-        
-        section.reverse .content-block {
-            padding-right: 0;
-            padding-left: 50px;
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 140, 0, 0.3);
         }
 
-        /* --- SPECIAL: TORQ SECTION --- */
-        .torq-section {
-            position: relative;
-            background: radial-gradient(circle at 80% 50%, #1e1e1e 0%, var(--bg-dark) 70%);
-        }
-
-        .torq-img {
-            max-height: 600px;
-            filter: drop-shadow(0 0 30px rgba(255, 140, 0, 0.2));
-            /* Animation for peeking */
-            animation: float 6s ease-in-out infinite;
-        }
-
-        /* --- APP SHOWCASE --- */
-        .app-showcase {
-            flex-direction: column;
-            text-align: center;
-        }
-        
-        .app-showcase .content-block {
-            padding: 0;
-            margin-bottom: 60px;
-        }
-        
-        .app-showcase p {
-            margin: 0 auto;
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
 
         /* --- FOOTER --- */
         footer {
-            padding: 80px 10%;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 0;
+            text-align: center;
         }
 
-        .footer-col h4 {
-            color: white;
-            margin-bottom: 20px;
+        .footer-links {
+            margin-bottom: 30px;
         }
 
-        .footer-col a {
-            display: block;
-            margin-bottom: 10px;
+        .footer-links a {
             color: var(--text-muted);
-            font-size: 0.9rem;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
         }
 
-        /* --- ANIMATIONS --- */
-        .fade-in-section {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-            will-change: opacity, visibility;
+        .footer-links a:hover {
+            color: var(--primary);
         }
 
-        .fade-in-section.is-visible {
-            opacity: 1;
-            transform: none;
+        .disclaimer {
+            font-size: 0.8rem;
+            color: #666;
+            max-width: 600px;
+            margin: 20px auto 0;
         }
 
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-            100% { transform: translateY(0px); }
-        }
-
-        /* Mobile Responsive */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
-            section, section.reverse {
-                flex-direction: column;
-                padding: 60px 5%;
-                text-align: center;
-            }
-            .content-block, section.reverse .content-block {
-                padding: 0;
-                margin-bottom: 40px;
-            }
-            nav { padding: 0 20px; }
-            .nav-links { display: none; } /* Simplified for mobile */
+            .hero { padding-top: var(--nav-height); }
         }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">
-            <img src="assets/Logo new.png" alt="FitSpire Logo">
-        </div>
+    <nav class="container">
+        <a href="#" class="logo">Torq Tribe</a>
         <div class="nav-links">
             <a href="#features">Features</a>
-            <a href="#torq">Meet Torq</a>
-            <a href="#beta" style="color: var(--primary); font-weight: bold;">Join Beta</a>
+            <a href="#privacy">Privacy</a>
+            <a href="mailto:support@torqtribe.com">Contact</a>
         </div>
     </nav>
 
-    <div class="hero">
+    <section class="hero">
         <div class="hero-bg"></div>
-        <div class="hero-content">
-            <h1>Awaken Your<br>Primal Strength.</h1>
-            <p>The fitness app that returns to the roots. Gamified workouts, AI coaching, and a prehistoric companion to keep you moving.</p>
-            <br><br>
-            <a href="#beta" class="btn btn-primary">Join the Beta</a>
-            <a href="#features" class="btn btn-secondary">Learn More</a>
-        </div>
-    </div>
-
-    <section id="features" class="fade-in-section">
-        <div class="content-block">
-            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">The Philosophy</h4>
-            <h2>Built from the Earth up.</h2>
-            <p>Modern fitness is overcomplicated. FitSpire strips it back. We focus on natural movement, consistent habits, and real progression. No gimmicks, just iron and will.</p>
-        </div>
-        <div class="image-block">
-            <img src="assets/wooden dumbbell.jpg" alt="Wooden Dumbbell">
+        <div class="hero-content container">
+            <h1>Forge Your Legacy.<br>Powered by Intelligence.</h1>
+            <p>The first fitness app that combines on-device Apple Intelligence™ with primal gamification. Privacy-first, performance-driven.</p>
+            <a href="#" class="cta-button">Join the Tribe</a>
         </div>
     </section>
 
-    <section class="reverse fade-in-section">
-        <div class="content-block">
-            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Gamification</h4>
-            <h2>Earn Your Embers.</h2>
-            <p>Every workout fuels your fire. Complete daily quests, maintain your streak, and earn Embers to unlock rewards. Fitness isn't a chore; it's a game you win every day.</p>
-        </div>
-        <div class="image-block">
-            <img src="assets/ember badge.png" alt="Ember Badge" style="max-width: 60%; filter: drop-shadow(0 0 20px rgba(255,140,0,0.3));">
-        </div>
-    </section>
-
-    <section id="torq" class="torq-section fade-in-section">
-        <div class="content-block">
-            <h4 style="color: var(--primary); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;">Your Companion</h4>
-            <h2>Meet Torq.</h2>
-            <p>He's not just a mascot; he's your spotter. Torq evolves as you do. When you slack off, he notices. When you crush a PR, he celebrates. He brings the prehistoric hype to your modern workout.</p>
-        </div>
-        <div class="image-block">
-            <img src="assets/Sidepeeking.png" alt="Torq Peeking" class="torq-img">
-        </div>
-    </section>
-
-    <section id="beta" class="app-showcase fade-in-section">
-        <div class="content-block">
-            <h2>Ready to Evolve?</h2>
-            <p>FitSpire is currently in closed beta for iOS. <br>Join the tribe and help us shape the future of fitness.</p>
-            <br>
-            <a href="#" class="btn btn-primary">Download on TestFlight</a>
-        </div>
-        <div class="image-block">
-            <img src="assets/Splash Screen.png" alt="FitSpire App Interface" style="max-height: 500px; width: auto; border: 4px solid #333;">
+    <section id="features" class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🧠</div>
+                <h3>On-Device AI</h3>
+                <p>Your workout plans are generated directly on your iPhone using Apple's latest models. Zero latency, 100% privacy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔥</div>
+                <h3>Gamified Progress</h3>
+                <p>Earn Embers, keep your Caveman alive, and climb the leaderboard. Fitness meets RPG addiction.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🛡️</div>
+                <h3>Privacy First</h3>
+                <p>We believe your health data belongs to you. AI processing happens locally, not in the cloud.</p>
+            </div>
         </div>
     </section>
 
     <footer>
-        <div class="footer-col">
-            <img src="assets/Logo new.png" alt="Logo" style="height: 30px; opacity: 0.5; margin-bottom: 20px;">
-            <p style="font-size: 0.8rem; opacity: 0.5;">© 2026 FitSpire. All rights reserved.</p>
-        </div>
-        <div class="footer-col">
-            <h4>Legal</h4>
-            <a href="privacy.html">Privacy Policy</a>
-            <a href="#">Terms of Service</a>
-        </div>
-        <div class="footer-col">
-            <h4>Connect</h4>
-            <a href="mailto:support@fitspire.app">Support</a>
-            <a href="#">Twitter</a>
-            <a href="#">Instagram</a>
+        <div class="container">
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="termsofservice.html">Terms of Service</a>
+                <a href="#">Support</a>
+            </div>
+            <p>&copy; 2026 Torq Tribe. All rights reserved.</p>
+            <p class="disclaimer">Apple, iPhone, and Apple Health are trademarks of Apple Inc., registered in the U.S. and other countries and regions.</p>
         </div>
     </footer>
-
-    <script>
-        // Simple Intersection Observer for scroll fade-ins
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target); // Only animate once
-                }
-            });
-        }, observerOptions);
-
-        document.querySelectorAll('.fade-in-section').forEach(section => {
-            observer.observe(section);
-        });
-    </script>
 
 </body>
 </html>
