@@ -12,7 +12,8 @@
             --text-muted: #a0a0a0;
             --primary: #FF8C00; /* Primal Orange */
             --accent: #FF4500;
-            --nav-height: 80px;
+            /* INCREASED: Nav height to accommodate 4x logo size */
+            --nav-height: 200px; 
         }
 
         * {
@@ -113,11 +114,25 @@
             background: rgba(10, 10, 10, 0.8);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255,255,255,0.05);
+            transition: height 0.3s ease;
         }
 
+        .logo {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            cursor: pointer; /* Ensure pointer cursor */
+        }
+
+        /* INCREASED: Logo size to approx 4x original (160px) */
         .logo img {
-            height: 40px;
+            height: 160px; 
             width: auto;
+            transition: transform 0.2s ease;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
         }
 
         .nav-links a {
@@ -141,6 +156,7 @@
             position: relative;
             overflow: hidden;
             text-align: center;
+            padding-top: var(--nav-height); /* Compensation for large nav */
         }
 
         .hero-bg {
@@ -254,6 +270,23 @@
             color: var(--text-muted);
             font-size: 0.9rem;
         }
+        
+        /* Updated footer logo style */
+        .footer-logo {
+            display: inline-block;
+            margin-bottom: 20px;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-logo:hover {
+            opacity: 0.8;
+        }
+        
+        .footer-logo img {
+            height: 120px; /* INCREASED: 4x original size */
+            width: auto;
+            opacity: 0.8;
+        }
 
         /* --- ANIMATIONS --- */
         .fade-in-section {
@@ -277,6 +310,10 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             h1 { font-size: 2.5rem; }
+            /* Adjust nav for mobile if the logo is huge */
+            :root { --nav-height: 120px; }
+            .logo img { height: 80px; } 
+            
             section, section.reverse {
                 flex-direction: column;
                 padding: 60px 5%;
@@ -294,9 +331,9 @@
 <body>
 
     <nav>
-        <div class="logo">
+        <a href="index.html" class="logo">
             <img src="assets/Logo new.png" alt="Torq Tribe Logo">
-        </div>
+        </a>
         <div class="nav-links">
             <a href="#features">Features</a>
             <a href="#torq">Meet Torq</a>
@@ -362,7 +399,9 @@
 
     <footer>
         <div class="footer-col">
-            <img src="assets/Logo new.png" alt="Logo" style="height: 30px; opacity: 0.5; margin-bottom: 20px;">
+            <a href="index.html" class="footer-logo">
+                <img src="assets/Logo new.png" alt="Logo">
+            </a>
             <p style="font-size: 0.8rem; opacity: 0.5;">© 2026 Torq Tribe. All rights reserved.</p>
         </div>
         <div class="footer-col">
@@ -372,7 +411,7 @@
         </div>
         <div class="footer-col">
             <h4>Connect</h4>
-            <a href="mailto:support@torqtribe.com">Support</a>
+            <a href="mailto:torqtribe@icloud.com">Support</a>
             <a href="#">Twitter</a>
             <a href="#">Instagram</a>
         </div>
