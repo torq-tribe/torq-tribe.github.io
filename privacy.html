@@ -9,6 +9,7 @@
   <title>Torq Tribe — Privacy Policy</title>
 
   <style>
+    /* Kept your existing dark theme styles */
     :root{
       --bg:#070707;
       --panel: rgba(18, 14, 10, .70);
@@ -24,89 +25,174 @@
       font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       color: var(--text);
       background:
-        radial-gradient(1200px 700px at 100% 0, #1a1005 0, transparent 100%),
-        radial-gradient(1000px 800px at 0 100%, #1a1005 0, transparent 100%),
+        radial-gradient(1200px 700px at 15% 0%, rgba(201,137,59,.14), transparent 60%),
+        radial-gradient(900px 600px at 95% 10%, rgba(138,90,34,.12), transparent 55%),
         var(--bg);
-      line-height:1.6;
+      line-height:1.62;
     }
-    .wrapper{
-      max-width:800px;
-      margin:0 auto;
-      padding:60px 20px;
-    }
-    h1{
-      font-size: 2.5rem;
-      color: var(--accent);
-      margin-bottom: 0.5em;
-    }
-    h2{
-      font-size: 1.5rem;
-      color: var(--text);
-      margin-top: 2em;
-      border-bottom: 1px solid var(--stroke);
-      padding-bottom: 10px;
-    }
-    ul{ padding-left: 20px; color: var(--muted); }
-    li{ margin-bottom: 10px; }
-    p{ color: var(--muted); margin-bottom: 1.5em; }
-    strong { color: var(--text); }
-    a { color: var(--accent); text-decoration: none; }
-    .panel {
-      background: var(--panel);
+    a{ color: var(--accent); text-decoration:none }
+    a:hover{ text-decoration: underline }
+    .wrap{ max-width: 980px; margin:0 auto; padding: 18px 18px 64px; }
+
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap: 14px;
+      padding: 12px 14px;
       border: 1px solid var(--stroke);
-      border-radius: 12px;
-      padding: 20px;
-      margin: 20px 0;
+      background: rgba(10,10,10,.36);
+      border-radius: 18px;
       backdrop-filter: blur(10px);
+      position: sticky; top: 12px; z-index: 30;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .brand img{ width: 34px; height: 34px; border-radius: 12px; }
+    .brand .title{ font-weight: 900; letter-spacing: .2px; }
+    .brand .meta{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .kbd{
+      display:inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(201,137,59,.30);
+      background: rgba(0,0,0,.25);
+      color: rgba(245,238,228,.95);
+      font-size: 12px;
+    }
+    .actions{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
+    .actions a{
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .actions a:hover{
+      border-color: rgba(201,137,59,.20);
+      background: rgba(201,137,59,.06);
+      text-decoration:none;
+    }
+
+    .doc{
+      margin-top: 16px;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 18px 16px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    h1{ margin:0 0 10px; font-size: 20px; }
+    h2{ margin: 18px 0 8px; font-size: 16px; }
+    p, li{ color: var(--muted); font-size: 14.5px; }
+    ul{ margin-top: 8px; }
+
+    .notice{
+      border: 1px dashed rgba(201,137,59,.40);
+      background: rgba(0,0,0,.22);
+      border-radius: 16px;
+      padding: 12px 12px 10px;
+      margin: 12px 0 16px;
+    }
+    .notice strong{ color: rgba(245,238,228,.98); }
+
+    footer{
+      margin-top: 14px;
+      color: rgba(203,185,166,.92);
+      font-size: 13px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
     }
   </style>
 </head>
+
 <body>
+  <div class="wrap">
 
-<div class="wrapper">
-  <h1>Privacy Policy</h1>
-  <p><strong>Last Updated:</strong> January 2026</p>
-  
-  <p>At <strong>Torq Tribe</strong> ("we," "our," or "us"), we believe your health data is personal. Our architecture is designed to prioritize <strong>on-device processing</strong> for AI features, minimizing the amount of data that leaves your phone.</p>
+    <div class="top">
+      <div class="brand">
+        <img src="./assets/Logo%20new.png" alt="Torq Tribe logo" />
+        <div>
+          <div class="title">Torq Tribe — Privacy Policy</div>
+          <div class="meta">Effective date: <span class="kbd" id="effectiveDate"></span></div>
+        </div>
+      </div>
+      <div class="actions">
+        <a href="./index.html">Home</a>
+        <a href="mailto:support@torqtribe.com">Support</a>
+      </div>
+    </div>
 
-  <h2>1. Data Processing & AI</h2>
-  <div class="panel">
-    <p><strong>On-Device Intelligence:</strong> Torq Tribe uses Apple's on-device models (Apple Intelligence) to generate workout plans and analyze your fitness data. This means the sensitive processing of your biomechanics and schedule happens directly on your iPhone, not on our servers.</p>
+    <section class="doc">
+      <h1>Privacy Policy</h1>
+      <p>
+        This Privacy Policy explains how <strong>Torq Tribe</strong> (“we,” “us,” “our”) collects, uses, and shares information
+        when you use our mobile app and related services (the “Service”).
+      </p>
+
+      <div class="notice">
+        <strong>Fitness / Health Disclaimer (Important):</strong>
+        <p style="margin:8px 0 0;">
+          Torq Tribe provides general fitness and educational information only. It is <strong>not medical advice</strong>. Consult a qualified healthcare provider before beginning any new exercise program.
+        </p>
+      </div>
+
+      <h2>1) Information we collect</h2>
+      <p>We collect information in three ways: (a) information you provide, (b) information generated by your use, and (c) information from third-party integrations.</p>
+
+      <h2>1A) Information you provide</h2>
+      <ul>
+        <li><strong>Account Information:</strong> We use Supabase Auth to authenticate your account. We store your email and user ID.</li>
+        <li><strong>Profile Data:</strong> You may enter data such as workout goals, available equipment, injuries, and preferences to personalize your plan.</li>
+      </ul>
+
+      <h2>1B) Information generated by your use</h2>
+      <ul>
+        <li><strong>Workout History:</strong> We store logs of your completed workouts, streaks, and "Embers" (gamification points).</li>
+        <li><strong>AI Interactions:</strong> When you request a workout plan, we process your profile data to generate a response.</li>
+      </ul>
+
+      <h2>1C) Integrations</h2>
+      <ul>
+        <li><strong>Apple HealthKit:</strong> If you grant permission, we read/write data (such as workouts and weight) to Apple Health. This data is used solely to track your progress and improve plan accuracy. We do not sell HealthKit data.</li>
+      </ul>
+
+      <h2>2) How we use AI & Data Processing</h2>
+      <p>Torq Tribe uses artificial intelligence to generate workout plans and provide coaching.</p>
+      <ul>
+        <li><strong>Processing Location:</strong> We utilize a hybrid approach. Some AI features may be processed locally on your device (using technologies like Apple Intelligence™) for speed and efficiency. Other complex tasks may be processed on secure cloud servers.</li>
+        <li><strong>Data Usage:</strong> We do not use your personal workout data to train public AI models. Your data is used to generate <em>your</em> specific plans.</li>
+      </ul>
+
+      <h2>3) How we share your information</h2>
+      <p>We do not sell your personal information. We share information only as needed to operate the Service:</p>
+      <ul>
+        <li><strong>Service Providers:</strong> We use trusted third-party services (like Supabase for database hosting) to operate the app.</li>
+        <li><strong>Legal Compliance:</strong> We may disclose information if required by law.</li>
+      </ul>
+
+      <h2>4) Data Retention & Deletion</h2>
+      <p>
+        We retain your data as long as your account is active. You may request full account deletion by contacting support or using the delete option in the app settings.
+      </p>
+
+      <h2>5) Contact</h2>
+      <p>
+        Privacy questions and requests: <a href="mailto:support@torqtribe.com">support@torqtribe.com</a>
+      </p>
+
+      <footer>
+        <div>© <span id="y"></span> Torq Tribe</div>
+        <div><a href="./index.html">Back to Home</a></div>
+      </footer>
+    </section>
+
   </div>
-  <p>We do not use your personal workout data to train our own proprietary LLMs in the cloud.</p>
 
-  <h2>2. Data We Collect</h2>
-  <p>We collect only the data necessary to provide the gamified fitness experience:</p>
-  <ul>
-    <li><strong>Account Information:</strong> Name, email address, and authentication details (via Supabase).</li>
-    <li><strong>Health & Fitness Data:</strong> Workout logs, exercises performed, body metrics (weight, height), and injuries. This data is stored in our secure database to allow you to sync across devices and compete on leaderboards.</li>
-    <li><strong>Gamification Data:</strong> "Embers" earned, streaks, and Caveman status.</li>
-  </ul>
-
-  <h2>3. Apple HealthKit Integration</h2>
-  <p>Torq Tribe integrates with Apple’s HealthKit to write workout data (calories, duration) and read biometric data (weight) to improve plan accuracy.</p>
-  <ul>
-    <li>We do not sell HealthKit data to third parties.</li>
-    <li>We do not use HealthKit data for advertising purposes.</li>
-  </ul>
-
-  <h2>4. Data Storage & Third Parties</h2>
-  <p>We use trusted third-party services to operate the app:</p>
-  <ul>
-    <li><strong>Supabase:</strong> Used for secure cloud database storage and authentication.</li>
-    <li><strong>YouTube API:</strong> Used to display exercise demonstration videos. By using these videos, you agree to be bound by the <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>.</li>
-  </ul>
-
-  <h2>5. Your Rights</h2>
-  <p>You have the right to:</p>
-  <ul>
-    <li><strong>Delete Your Account:</strong> You can request full account deletion directly within the app settings. This will remove your data from our servers.</li>
-    <li><strong>Export Data:</strong> You may request a copy of your workout history.</li>
-  </ul>
-
-  <h2>6. Contact Us</h2>
-  <p>If you have questions about this policy, please contact us at <a href="mailto:support@torqtribe.com">support@torqtribe.com</a>.</p>
-
-</div>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    const d = new Date();
+    document.getElementById("effectiveDate").textContent =
+      d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
+  </script>
 </body>
 </html>
