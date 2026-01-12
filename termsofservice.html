@@ -6,7 +6,6 @@
   <title>Torq Tribe — Terms of Service</title>
 
   <style>
-    /* Same visual theme as Privacy Policy */
     :root{
       --bg:#070707;
       --panel: rgba(18, 14, 10, .70);
@@ -15,6 +14,7 @@
       --muted:#cbb9a6;
       --accent:#c9893b;
       --danger:#ff4444;
+      --shadow: 0 26px 90px rgba(0,0,0,.46);
     }
     *{ box-sizing:border-box }
     body{
@@ -27,12 +27,51 @@
         var(--bg);
       line-height:1.62;
     }
-    .wrap{ max-width: 980px; margin:0 auto; padding: 60px 20px; }
-    h1{ color: var(--accent); margin-bottom: 0.5em; }
-    h2{ color: var(--text); margin-top: 2em; border-bottom: 1px solid var(--stroke); padding-bottom: 10px; }
-    ul{ padding-left: 20px; color: var(--muted); }
-    li{ margin-bottom: 10px; }
-    p { color: var(--muted); }
+    a{ color: var(--accent); text-decoration:none }
+    a:hover{ text-decoration: underline }
+    .wrap{ max-width: 980px; margin:0 auto; padding: 18px 18px 64px; }
+
+    /* Top Nav Bar (Matches Privacy Policy) */
+    .top{
+      display:flex; align-items:center; justify-content:space-between; gap: 14px;
+      padding: 12px 14px;
+      border: 1px solid var(--stroke);
+      background: rgba(10,10,10,.36);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      position: sticky; top: 12px; z-index: 30;
+    }
+    .brand{ display:flex; align-items:center; gap:10px; }
+    .brand img{ width: 34px; height: 34px; border-radius: 12px; }
+    .brand .title{ font-weight: 900; letter-spacing: .2px; }
+    .brand .meta{ font-size: 12px; color: var(--muted); margin-top: 2px; }
+    
+    .actions{ display:flex; gap: 10px; flex-wrap: wrap; justify-content:flex-end; }
+    .actions a{
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    .actions a:hover{
+      border-color: rgba(201,137,59,.20);
+      background: rgba(201,137,59,.06);
+      text-decoration:none;
+    }
+
+    .doc{
+      margin-top: 16px;
+      border: 1px solid var(--stroke);
+      background: var(--panel);
+      border-radius: 18px;
+      padding: 18px 16px 14px;
+      box-shadow: var(--shadow);
+    }
+
+    h1{ margin:0 0 10px; font-size: 20px; color: var(--accent); }
+    h2{ margin: 18px 0 8px; font-size: 16px; color: var(--text); border-bottom: 1px solid var(--stroke); padding-bottom: 10px; }
+    p, li{ color: var(--muted); font-size: 14.5px; }
+    ul{ margin-top: 8px; padding-left: 20px; }
     
     .disclaimer-box {
       border: 1px solid var(--danger);
@@ -42,42 +81,76 @@
       margin: 20px 0;
       color: #ffcccc;
     }
+    
+    footer{
+      margin-top: 14px;
+      color: rgba(203,185,166,.92);
+      font-size: 13px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
   </style>
 </head>
 <body>
 
 <div class="wrap">
-  <h1>Terms of Service</h1>
-  <p><strong>Last Updated:</strong> January 2026</p>
 
-  <div class="disclaimer-box">
-    <strong>⚠️ MEDICAL DISCLAIMER:</strong>
-    <p>Torq Tribe is not a medical organization. The workout plans, exercises, and AI-generated advice provided by this app are for informational purposes only. You should consult your physician before starting this or any other fitness program.</p>
+  <div class="top">
+      <div class="brand">
+        <img src="./assets/Logo%20new.png" alt="Torq Tribe logo" />
+        <div class="title">Torq Tribe — Terms</div>
+      </div>
+      <div class="actions">
+        <a href="./index.html">Home</a>
+        <a href="mailto:torqtribe@icloud.com">Support</a>
+      </div>
   </div>
 
-  <h2>1. Acceptance of Terms</h2>
-  <p>By downloading or using Torq Tribe, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Service.</p>
+  <section class="doc">
+    <h1>Terms of Service</h1>
+    <p><strong>Last Updated:</strong> January 2026</p>
 
-  <h2>2. AI-Generated Content</h2>
-  <p>Torq Tribe uses artificial intelligence (AI) to generate workout plans and content.</p>
-  <ul>
-    <li><strong>Nature of AI:</strong> You acknowledge that AI systems can occasionally produce incorrect or unsafe advice. You are responsible for using your best judgment when following any AI-generated plan.</li>
-    <li><strong>Processing:</strong> AI features may run on your device or in the cloud. By using these features, you consent to the processing of your inputs to generate responses.</li>
-  </ul>
+    <div class="disclaimer-box">
+        <strong>⚠️ MEDICAL DISCLAIMER:</strong>
+        <p style="color: #ffcccc; margin-top: 5px;">Torq Tribe is not a medical organization. The workout plans, exercises, and AI-generated advice provided by this app are for informational purposes only. You should consult your physician before starting this or any other fitness program.</p>
+    </div>
 
-  <h2>3. User Responsibilities</h2>
-  <ul>
-    <li>You must be at least 18 years old to use this App.</li>
-    <li>You are responsible for maintaining the security of your account credentials.</li>
-    <li>You agree not to misuse the Service or attempt to reverse-engineer the App's code or models.</li>
-  </ul>
+    <h2>1. Acceptance of Terms</h2>
+    <p>By downloading or using Torq Tribe, you agree to be bound by these Terms. If you do not agree to these Terms, do not use the Service.</p>
 
-  <h2>4. Limitation of Liability</h2>
-  <p>To the maximum extent permitted by law, Torq Tribe and its developers shall not be liable for any injuries, damages, or losses resulting from your use of the App.</p>
+    <h2>2. AI-Generated Content</h2>
+    <p>Torq Tribe uses artificial intelligence (AI) to generate workout plans and content.</p>
+    <ul>
+        <li><strong>Nature of AI:</strong> You acknowledge that AI systems can occasionally produce incorrect or unsafe advice. You are responsible for using your best judgment when following any AI-generated plan.</li>
+        <li><strong>Processing:</strong> AI features may run on your device or in the cloud. By using these features, you consent to the processing of your inputs to generate responses.</li>
+    </ul>
 
-  <h2>5. Changes to Terms</h2>
-  <p>We reserve the right to modify these terms at any time. Continued use of the App after changes constitutes acceptance of the new terms.</p>
+    <h2>3. User Responsibilities</h2>
+    <ul>
+        <li>You must be at least 18 years old to use this App.</li>
+        <li>You are responsible for maintaining the security of your account credentials.</li>
+        <li>You agree not to misuse the Service or attempt to reverse-engineer the App's code or models.</li>
+    </ul>
+
+    <h2>4. Limitation of Liability</h2>
+    <p>To the maximum extent permitted by law, Torq Tribe and its developers shall not be liable for any injuries, damages, or losses resulting from your use of the App.</p>
+
+    <h2>5. Changes to Terms</h2>
+    <p>We reserve the right to modify these terms at any time. Continued use of the App after changes constitutes acceptance of the new terms.</p>
+
+    <footer>
+        <div>© <span id="y"></span> Torq Tribe</div>
+        <div><a href="./index.html">Back to Home</a></div>
+    </footer>
+  </section>
 
 </div>
+
+<script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
