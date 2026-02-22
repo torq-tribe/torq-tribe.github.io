@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="referrer" content="origin">
+  <title>TorqTribe YouTube Player</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: #111;
+      overflow: hidden;
+    }
+    #player {
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div id="player"></div>
+  <script>
+    // Parse URL parameters
+    const urlParams = new URLSearchParams(window.location.search);
+    const videoId = urlParams.get('videoId') || '';
+    const autoplay = parseInt(urlParams.get('autoplay') || '0', 10);
+    const mute = parseInt(urlParams.get('mute') || '0', 10);
+    const origin = urlParams.get('origin') || 'https://torqtribe.com';
+
+    var ytPlayer = null;
+    window.ytPlayer = null;
+
+    // Bridge function to communicate with Swift
+    function postBridge(event, value) {
+      try {
+        if (window.webkit && window.webkit.messageHandlers && window.webkit.messageHandlers.ytPlayerBridge) {
+          window.webkit.messageHandlers.ytPlayerBridge.postMessage({
+            event: event,
+            value: value
+          });
+        }
+      } catch (e) {
+        console.error('Bridge error:', e);
+      }
+    }
+
+    // YouTube IFrame API Ready callback
+    function onYouTubeIframeAPIReady() {
+      if (!videoId) {
+        postBridge('error', -1);
+        return;
+      }
+
+      ytPlayer = new YT.Player('player', {
+        videoId: videoId,
+        playerVars: {
+          autoplay: autoplay,
+          mute: mute,
+          controls: 1,
+          rel: 0,
+          modestbranding: 1,
+          playsinline: 1,
+          enablejsapi: 1,
+          origin: origin,
+          widget_referrer: origin
+        },
+        events: {
+          onReady: function (event) {
+            window.ytPlayer = event.target;
+            postBridge('ready', 0);
+          },
+          onStateChange: function (event) {
+            postBridge('stateChange', event.data);
+          },
+          onError: function (event) {
+            postBridge('error', event.data);
+          }
+        }
+      });
+    }
+
+    // Expose playback control functions for Swift to call
+    window.playVideo = function() {
+      if (window.ytPlayer && typeof window.ytPlayer.playVideo === 'function') {
+        window.ytPlayer.playVideo();
+      }
+    };
+
+    window.pauseVideo = function() {
+      if (window.ytPlayer && typeof window.ytPlayer.pauseVideo === 'function') {
+        window.ytPlayer.pauseVideo();
+      }
+    };
+
+    window.stopVideo = function() {
+      if (window.ytPlayer && typeof window.ytPlayer.stopVideo === 'function') {
+        window.ytPlayer.stopVideo();
+      }
+    };
+
+    window.seekTo = function(seconds, allowSeekAhead) {
+      if (window.ytPlayer && typeof window.ytPlayer.seekTo === 'function') {
+        window.ytPlayer.seekTo(seconds, allowSeekAhead || true);
+      }
+    };
+  </script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+</body>
+</html>
