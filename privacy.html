@@ -102,7 +102,7 @@
         <img src="./assets/Logo%20new.png" alt="Torq Tribe logo" />
         <div>
           <div class="title">Torq Tribe — Privacy Policy</div>
-          <div class="meta">Effective date: <span id="effectiveDate"></span></div>
+          <div class="meta">Effective date: <span>April 18, 2026</span></div>
         </div>
       </a>
       <div class="actions">
@@ -140,10 +140,6 @@
         <li><strong>AI Interactions:</strong> When you request a workout plan, we process your profile data to generate a response.</li>
       </ul>
 
-      <h2>1C) Integrations</h2>
-      <ul>
-        <li><strong>Apple HealthKit:</strong> If you grant permission, we read/write data (such as workouts and weight) to Apple Health. This data is used solely to track your progress and improve plan accuracy. We do not sell HealthKit data.</li>
-      </ul>
 
       <h2>2) How we use AI & Data Processing</h2>
       <p>Torq Tribe uses artificial intelligence to generate workout plans and provide coaching.</p>
@@ -159,7 +155,7 @@
         <li><strong>Legal Compliance:</strong> We may disclose information if required by law.</li>
       </ul>
 
-      <h2>4) Data Retention & Deletion</h2>
+      <h2 id="deletion">4) Data Retention & Deletion</h2>
       <p>
         We retain your data as long as your account is active. You may request full account deletion by contacting support or using the delete option in the app settings.
       </p>
@@ -179,9 +175,6 @@
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
-    const d = new Date();
-    document.getElementById("effectiveDate").textContent =
-      d.toLocaleDateString(undefined, { year: "numeric", month: "long", day: "numeric" });
   </script>
 </body>
 </html>
