@@ -89,6 +89,15 @@
       flex-wrap: wrap;
       align-items:center;
     }
+    @media (max-width: 768px) {
+      .wrap{ padding: 12px 12px 40px; }
+      .doc{ padding: 16px 20px 24px; }
+      .top{ flex-direction: column; text-align: center; gap: 10px; }
+      .actions{ justify-content: center; }
+      footer{ flex-direction: column; text-align: center; gap: 20px; }
+      footer div{ justify-content: center; flex-wrap: wrap; }
+      table { display: block; overflow-x: auto; white-space: nowrap; }
+    }
   </style>
 </head>
 
