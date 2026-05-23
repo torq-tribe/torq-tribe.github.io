@@ -169,38 +169,33 @@
         .blog-card:nth-child(2) { animation-delay: 0.55s; }
         .blog-card:nth-child(3) { animation-delay: 0.7s; }
 
-        /* --- MORPHING BLOB KEYFRAMES --- */
-        @keyframes morphBlob {
-            0% {
-                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            }
-            50% {
-                border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
-            }
-            100% {
-                border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
-            }
-        }
 
-        /* --- BLOG GRID --- */
+        /* --- BLOG VERTICAL STACK (SPLIT LAYOUT) --- */
         .blog-container {
             padding: 40px 10% 120px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .blog-card {
             --card-accent: var(--primary);
             background: var(--bg-card);
             backdrop-filter: blur(25px);
-            border-radius: 40px;
+            border-radius: 30px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.06);
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* Desktop split layout */
+            align-items: stretch;
             position: relative;
+        }
+
+        .blog-card:nth-child(even) {
+            flex-direction: row-reverse; /* Alternate image sides */
         }
 
         .blog-card:hover {
@@ -209,29 +204,30 @@
             border-color: color-mix(in srgb, var(--card-accent) 40%, transparent);
         }
 
+        .blog-card-image-wrapper {
+            flex: 0 0 55%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.15);
+            padding: 20px;
+        }
+
         .blog-card-image {
-            height: 220px;
-            background-color: #222;
-            background-size: cover;
-            background-position: center;
-            margin: 24px 24px 10px;
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            animation: morphBlob 12s ease-in-out infinite alternate;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            width: 100%;
+            height: auto;
+            max-height: 450px;
+            object-fit: contain; /* Prevent cropping */
+            border-radius: 15px;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .blog-card:hover .blog-card-image {
-            transform: scale(1.04) rotate(1deg);
-            border-radius: 40% 60% 60% 40% / 50% 60% 40% 50%;
+            transform: scale(1.02);
         }
 
         .blog-card.featured {
-            grid-column: span 2;
             --card-accent: #e0b85b; /* Gold glow */
-        }
-
-        .blog-card.featured .blog-card-image {
-            height: 320px;
         }
 
         .blog-card--home {
@@ -243,10 +239,11 @@
         }
 
         .blog-card-content {
-            padding: 24px 34px 34px;
+            flex: 1;
+            padding: 50px 40px;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            justify-content: center;
         }
 
         .blog-card-category {
@@ -255,7 +252,7 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
@@ -264,39 +261,48 @@
         }
 
         .blog-card h2 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
             color: #fff;
             transition: color 0.3s ease;
+            line-height: 1.2;
         }
 
         .blog-card p {
-            font-size: 1.05rem;
-            margin-bottom: 25px;
-            flex-grow: 1;
+            font-size: 1.15rem;
+            margin-bottom: 30px;
+            max-width: 100%;
+            color: rgba(255,255,255,0.75);
         }
 
         .blog-card-footer {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            padding-top: 20px;
             margin-top: auto;
         }
 
         .read-more {
             color: var(--card-accent);
             font-weight: 700;
-            font-size: 0.95rem;
+            font-size: 1rem;
             display: flex;
             align-items: center;
+            border: 1px solid var(--card-accent);
+            padding: 10px 24px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
         }
 
         .read-more::after {
             content: '→';
             margin-left: 8px;
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .blog-card:hover .read-more {
+            background: var(--card-accent);
+            color: #000;
         }
 
         .blog-card:hover .read-more::after {
@@ -343,11 +349,22 @@
 
         /* --- MOBILE RESPONSIVE --- */
         @media (max-width: 980px) {
-            .blog-card.featured {
-                grid-column: span 1;
+            .blog-card {
+                flex-direction: column !important; /* Stack vertically on small screens */
             }
-            .blog-card.featured .blog-card-image {
-                height: 220px;
+
+            .blog-card-image-wrapper {
+                flex: none;
+                width: 100%;
+                padding: 30px 20px 0;
+            }
+
+            .blog-card-image {
+                max-height: 300px;
+            }
+
+            .blog-card-content {
+                padding: 30px;
             }
         }
 
@@ -385,52 +402,10 @@
                 padding-top: 160px;
                 padding-left: 16px;
                 padding-right: 16px;
-                overflow: hidden;
-            }
-
-            .hero h1 {
-                max-width: 310px;
-                margin-left: auto;
-                margin-right: auto;
-                font-size: 2.2rem;
-                overflow-wrap: anywhere;
-            }
-
-            .hero p {
-                max-width: 310px;
-                margin-left: auto;
-                margin-right: auto;
-                overflow-wrap: anywhere;
             }
 
             .blog-container {
-                max-width: 370px;
-                margin-left: auto;
-                margin-right: auto;
-                padding: 20px 14px 80px;
-                grid-template-columns: 1fr;
-            }
-
-            .blog-card {
-                max-width: 342px;
-            }
-
-            .blog-card-image {
-                margin: 16px 16px 6px;
-                height: 190px;
-            }
-
-            .blog-card-content {
-                padding: 20px 24px 24px;
-            }
-
-            .blog-card h2,
-            .blog-card p {
-                overflow-wrap: anywhere;
-            }
-
-            .blog-card.featured .blog-card-image {
-                height: 190px;
+                padding: 20px 16px 80px;
             }
 
             footer {
@@ -448,7 +423,7 @@
 </head>
 
 <body>
-    <!-- Background Canvas -->
+    <!-- Background Canvas for Physics Engine -->
     <canvas id="gravity-bg"></canvas>
 
     <nav>
@@ -472,7 +447,9 @@
         
         <!-- Article 1 -->
         <a href="articles/beginner-full-body-plan.html" class="blog-card featured">
-            <div class="blog-card-image" style="background-image: url('assets/torq-squat-training.jpg');"></div>
+            <div class="blog-card-image-wrapper">
+                <img src="assets/torq-squat-training.jpg" alt="Torq squatting" class="blog-card-image">
+            </div>
             <div class="blog-card-content">
                 <div class="blog-card-category">Beginner Guides</div>
                 <h2>The Ultimate 3-Day Beginner Full Body Workout Plan</h2>
@@ -485,7 +462,9 @@
 
         <!-- Article 2 -->
         <a href="articles/dumbbell-home-workout.html" class="blog-card blog-card--home">
-            <div class="blog-card-image" style="background-image: url('assets/tora-goblet-squat.jpg');"></div>
+            <div class="blog-card-image-wrapper">
+                <img src="assets/tora-goblet-squat.jpg" alt="Tora goblet squat" class="blog-card-image">
+            </div>
             <div class="blog-card-content">
                 <div class="blog-card-category">Home Workouts</div>
                 <h2>The Complete Dumbbell-Only Home Workout Guide</h2>
@@ -498,7 +477,9 @@
 
         <!-- Article 3 -->
         <a href="articles/ppl-vs-full-body.html" class="blog-card blog-card--split">
-            <div class="blog-card-image" style="background-image: url('assets/split-training-camp.jpg');"></div>
+            <div class="blog-card-image-wrapper">
+                <img src="assets/split-training-camp.jpg" alt="Torq and Tora training" class="blog-card-image">
+            </div>
             <div class="blog-card-content">
                 <div class="blog-card-category">Training splits</div>
                 <h2>PPL vs. Full Body: Which Split is Right for Your Level?</h2>
@@ -533,6 +514,9 @@
         </div>
     </footer>
 
+    <!-- Matter.js Physics Engine -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    
     <!-- Interactive script for gravity and magnetic pull -->
     <script src="assets/blog-interactions.js"></script>
 </body>
