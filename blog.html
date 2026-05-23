@@ -4,16 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Torq Tribe Blog - Primal Strength & Fitness Guides</title>
+    <title>Torq Tribe Field Manual | Primal Strength & Fitness Guides</title>
     <meta name="description" content="Discover the best workout plans, fitness tips, and training guides to awaken your primal strength. Learn about full-body splits, dumbbell workouts, and more.">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
         :root {
             --bg-dark: #0a0a0a;
             --bg-card: #141414;
             --text-main: #ffffff;
-            --text-muted: #a0a0a0;
-            --primary: #FF8C00;
-            --accent: #FF4500;
+            --text-muted: #a9a392;
+            --primary: #e0b85b;
+            --accent: #2f8b76;
             --nav-height: 100px;
         }
 
@@ -28,17 +30,20 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-main);
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4 {
+            font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            letter-spacing: 0;
+            letter-spacing: -0.015em;
         }
 
         h1 {
@@ -117,12 +122,36 @@
         .hero {
             padding: calc(var(--nav-height) + 60px) 10% 60px;
             text-align: center;
-            background: radial-gradient(circle at 50% 0%, #1e1e1e 0%, var(--bg-dark) 70%);
+            background: radial-gradient(circle at 50% 0%, #171c17 0%, var(--bg-dark) 70%);
         }
 
         .hero p {
             margin: 0 auto;
         }
+
+        /* --- STAGGERED ENTRANCE --- */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero h1, .hero p, .blog-card {
+            opacity: 0;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .hero h1 { animation-delay: 0.1s; }
+        .hero p { animation-delay: 0.25s; }
+
+        .blog-card:nth-child(1) { animation-delay: 0.4s; }
+        .blog-card:nth-child(2) { animation-delay: 0.55s; }
+        .blog-card:nth-child(3) { animation-delay: 0.7s; }
 
         /* --- BLOG GRID --- */
         .blog-container {
@@ -138,15 +167,16 @@
             border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
             display: flex;
             flex-direction: column;
+            position: relative;
         }
 
         .blog-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px color-mix(in srgb, var(--card-accent) 24%, transparent);
-            border-color: color-mix(in srgb, var(--card-accent) 44%, transparent);
+            transform: translateY(-8px);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 30px color-mix(in srgb, var(--card-accent) 15%, transparent);
+            border-color: color-mix(in srgb, var(--card-accent) 40%, transparent);
         }
 
         .blog-card-image {
@@ -154,10 +184,16 @@
             background-color: #222;
             background-size: cover;
             background-position: center;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .blog-card:hover .blog-card-image {
+            transform: scale(1.05);
         }
 
         .blog-card.featured {
             grid-column: span 2;
+            --card-accent: #e0b85b; /* Gold glow */
         }
 
         .blog-card.featured .blog-card-image {
@@ -165,11 +201,11 @@
         }
 
         .blog-card--home {
-            --card-accent: #5bb5aa;
+            --card-accent: #5bb5aa; /* Teal glow */
         }
 
         .blog-card--split {
-            --card-accent: #ee6b42;
+            --card-accent: #ee6b42; /* Crimson glow */
         }
 
         .blog-card-content {
@@ -186,11 +222,21 @@
             letter-spacing: 2px;
             font-weight: 700;
             margin-bottom: 10px;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .blog-card:hover .blog-card-category {
+            transform: translateY(-2px);
         }
 
         .blog-card h2 {
             font-size: 1.5rem;
             margin-bottom: 15px;
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .blog-card:hover h2 {
             color: #fff;
         }
 
@@ -204,7 +250,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             padding-top: 20px;
             margin-top: auto;
         }
@@ -220,17 +266,17 @@
         .read-more::after {
             content: '→';
             margin-left: 8px;
-            transition: transform 0.2s ease;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .blog-card:hover .read-more::after {
-            transform: translateX(5px);
+            transform: translateX(6px);
         }
 
         /* --- FOOTER --- */
         footer {
             padding: 80px 10%;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
             display: flex;
             justify-content: space-between;
             align-items: flex-start;

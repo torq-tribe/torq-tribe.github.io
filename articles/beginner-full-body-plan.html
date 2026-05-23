@@ -156,10 +156,14 @@
             .footer-col { width: 100%; }
         }
     </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/article-styles.css">
 </head>
 
 <body class="article-page theme-beginner">
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <nav>
         <a href="../index.html" class="logo">
@@ -173,7 +177,7 @@
     </nav>
 
     <header class="article-hero">
-        <div class="article-hero-copy">
+        <div class="article-hero-copy reveal-element delay-1">
             <div class="article-meta">Beginner Guides</div>
             <h1>The Ultimate 3-Day Beginner Full Body Workout Plan</h1>
             <p class="article-dek">A simple, repeatable full-body plan built around the moves beginners need most: squat, press, hinge, row, and lunge.</p>
@@ -183,7 +187,7 @@
                 <span><b>Goal</b>Form + muscle</span>
             </div>
         </div>
-        <figure class="article-hero-media hero-media-wide">
+        <figure class="article-hero-media hero-media-wide reveal-element delay-2">
             <img src="../assets/torq-squat-training.jpg" alt="Torq performing a low-bar back squat with a stone barbell in a jungle clearing">
             <figcaption>Start with the big pattern: controlled squats, steady breathing, and clean reps before heavy loading.</figcaption>
         </figure>
@@ -194,7 +198,7 @@
         
         <p>The answer is simple: <strong>Full Body Training.</strong></p>
 
-        <section class="quick-panel" aria-label="Beginner plan quick facts">
+        <section class="quick-panel reveal-element delay-3" aria-label="Beginner plan quick facts">
             <div class="quick-stat"><b>How to run it</b>Alternate Workout A and B for 4 weeks.</div>
             <div class="quick-stat"><b>Rest</b>Take at least one rest day between sessions.</div>
             <div class="quick-stat"><b>Progress</b>Add a rep or small weight jump only when form stays clean.</div>
@@ -211,7 +215,7 @@
         <h2>The Routine: Beginner Awakening</h2>
         <p>This routine is built around primal, compound movements. You will train 3 days a week (e.g., Monday, Wednesday, Friday) with at least one rest day in between.</p>
 
-        <section class="content-band">
+        <section class="content-band reveal-element delay-3">
             <h2>Move Like This</h2>
             <p>Think of the plan as practice first and intensity second. Each rep should look like a demonstration you would be comfortable showing a coach.</p>
             <div class="movement-grid">
@@ -226,7 +230,7 @@
             </div>
         </section>
 
-        <div class="workout-day">
+        <div class="workout-day reveal-element delay-4">
             <h4>Workout A &mdash; Full Body Hypertrophy</h4>
             <div class="exercise-row"><span class="ex-name">Barbell Low Bar Back Squat</span><span class="ex-reps">3 sets x 8-10 reps</span></div>
             <div class="exercise-row"><span class="ex-name">Barbell Bench Press</span><span class="ex-reps">3 sets x 8-10 reps</span></div>
@@ -234,7 +238,7 @@
             <div class="exercise-row"><span class="ex-name">Dumbbell Lateral Raise</span><span class="ex-reps">3 sets x 12-15 reps</span></div>
         </div>
 
-        <div class="workout-day">
+        <div class="workout-day reveal-element delay-4">
             <h4>Workout B &mdash; Full Body Strength</h4>
             <div class="exercise-row"><span class="ex-name">Barbell Romanian Deadlift</span><span class="ex-reps">1 set x 5 reps (warm up well!)</span></div>
             <div class="exercise-row"><span class="ex-name">Barbell Overhead Press</span><span class="ex-reps">3 sets x 8-10 reps</span></div>
@@ -244,7 +248,7 @@
 
         <p><em>Progression:</em> Run A on Monday, B on Wednesday, A on Friday &mdash; same rotation every week for 4 weeks. Each session, try to add a small amount of weight (2.5 lbs / 1 kg) or one rep to your lifts if you hit the target rep range safely.</p>
 
-        <div class="cta-box">
+        <div class="cta-box reveal-element delay-5">
             <h2>Ready to Run This Program?</h2>
             <p>Don't want to track this on a spreadsheet? We've loaded this exact routine into the Torq Tribe app. Earn Embers, level up your primal avatar, and let our AI track your progression automatically.</p>
             <a href="torqtribe://program/torqtribe/beginner-full-body-awakening" class="btn btn-primary">Open in Torq Tribe App</a>
@@ -275,5 +279,14 @@
         </div>
     </footer>
 
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('scrollProgress').style.width = scrolled + '%';
+        });
+    </script>
 </body>
 </html>

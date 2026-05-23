@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
+
 body.article-page {
     --article-bg: #0b0d0a;
     --article-card: rgba(18, 21, 17, 0.86);
@@ -7,9 +9,14 @@ body.article-page {
     --article-muted: #a9a392;
     --article-cream: #f8efd8;
     --article-glow: rgba(199, 154, 59, 0.24);
+    --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background:
         radial-gradient(circle at 12% 8%, var(--article-glow), transparent 36rem),
         linear-gradient(180deg, var(--article-bg), #070806 46rem, #0b0d0a);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 body.theme-beginner {
@@ -49,8 +56,44 @@ body.article-page h1,
 body.article-page h2,
 body.article-page h3,
 body.article-page h4 {
-    letter-spacing: 0;
+    font-family: var(--font-heading);
+    letter-spacing: -0.01em;
 }
+
+/* --- SCROLL PROGRESS BAR --- */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: linear-gradient(to right, var(--primary), var(--accent));
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
+/* --- ENTRANCE ANIMATIONS --- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.reveal-element {
+    opacity: 0;
+    animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
 
 .article-hero {
     display: grid;
@@ -122,6 +165,14 @@ body.article-page h4 {
     border-radius: 8px;
     padding: 14px 16px;
     color: var(--article-copy);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
+}
+
+.hero-tags span:hover,
+.quick-stat:hover,
+.split-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.2);
 }
 
 .hero-tags b,
@@ -143,6 +194,13 @@ body.article-page h4 {
     border-radius: 8px;
     background: #111;
     box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+    transition: border-color 0.5s ease, box-shadow 0.5s ease;
+}
+
+.article-hero-media:hover,
+.movement-card:hover {
+    border-color: color-mix(in srgb, var(--primary) 40%, transparent);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5), 0 0 30px color-mix(in srgb, var(--primary) 12%, transparent);
 }
 
 .article-hero-media {
@@ -166,6 +224,12 @@ body.article-page h4 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.article-hero-media:hover img,
+.movement-card:hover img {
+    transform: scale(1.04);
 }
 
 .article-hero-media figcaption,
@@ -181,6 +245,7 @@ body.article-page h4 {
     color: var(--article-cream);
     font-size: 0.92rem;
     backdrop-filter: blur(14px);
+    z-index: 2;
 }
 
 .article-content {
@@ -249,6 +314,13 @@ body.article-page h4 {
     border-radius: 8px;
     padding: 28px;
     box-shadow: 0 18px 48px rgba(0, 0, 0, 0.24);
+    margin-bottom: 30px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.workout-day:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
 }
 
 .workout-day::before {
@@ -262,12 +334,32 @@ body.article-page h4 {
 .workout-day h4 {
     border-bottom-color: var(--article-line);
     color: var(--article-cream);
+    font-size: 1.3rem;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
 }
 
 .exercise-row {
     counter-increment: exercise;
     gap: 18px;
     align-items: center;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+    padding: 12px 10px;
+    margin: 0 -10px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px dashed rgba(255,255,255,0.1);
+}
+
+.exercise-row:last-child {
+    border-bottom: none;
+}
+
+.exercise-row:hover {
+    transform: translateX(6px);
+    background-color: rgba(255, 255, 255, 0.03);
 }
 
 .exercise-row::before {
@@ -282,6 +374,13 @@ body.article-page h4 {
     color: var(--primary);
     font-size: 0.74rem;
     font-weight: 800;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.exercise-row:hover::before {
+    background: var(--primary);
+    color: #000;
+    transform: scale(1.1);
 }
 
 .workout-day {
@@ -291,11 +390,13 @@ body.article-page h4 {
 .ex-name {
     flex: 1;
     color: var(--article-cream);
+    font-weight: 600;
 }
 
 .ex-reps {
     color: var(--primary);
     text-align: right;
+    font-weight: 700;
 }
 
 .split-picker {
@@ -318,6 +419,12 @@ body.article-page h4 {
     background:
         linear-gradient(135deg, color-mix(in srgb, var(--primary) 24%, transparent), rgba(255, 255, 255, 0.04)),
         var(--article-card-strong);
+    transition: box-shadow 0.5s ease, border-color 0.5s ease;
+}
+
+.cta-box:hover {
+    border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3), 0 0 40px color-mix(in srgb, var(--primary) 10%, transparent);
 }
 
 .btn {
@@ -327,6 +434,12 @@ body.article-page h4 {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary), var(--accent));
     box-shadow: 0 14px 28px color-mix(in srgb, var(--primary) 22%, transparent);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 18px 36px color-mix(in srgb, var(--primary) 35%, transparent);
 }
 
 @media (max-width: 980px) {
