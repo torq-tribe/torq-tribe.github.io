@@ -14,6 +14,9 @@ body.article-page {
     --nav-height: 100px;
     background: #060705;
     font-family: var(--font-body);
+    color: var(--article-copy);
+    overflow-x: hidden;
+    max-width: 100vw;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -40,7 +43,7 @@ body.theme-split {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     z-index: -1;
     pointer-events: none;
@@ -61,6 +64,7 @@ body.article-page h3,
 body.article-page h4 {
     font-family: var(--font-heading);
     letter-spacing: -0.015em;
+    color: var(--article-cream);
 }
 
 /* --- NAVIGATION --- */
@@ -316,6 +320,7 @@ nav {
 
 .article-content {
     width: min(880px, 90vw);
+    margin: 0 auto;
     max-width: none;
     padding: 0 0 100px;
     position: relative;

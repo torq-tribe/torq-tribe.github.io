@@ -1,142 +1,132 @@
 document.addEventListener('DOMContentLoaded', () => {
-    initMatterPhysics();
+    initMagneticCanvas();
     initMagneticHover();
     initScrollProgress();
 });
 
-function initMatterPhysics() {
+function initMagneticCanvas() {
     const canvas = document.getElementById('gravity-bg');
-    if (!canvas || typeof Matter === 'undefined') return;
+    if (!canvas) return;
 
-    // Matter.js module aliases
-    const Engine = Matter.Engine,
-          Render = Matter.Render,
-          Runner = Matter.Runner,
-          Bodies = Matter.Bodies,
-          Composite = Matter.Composite,
-          Mouse = Matter.Mouse,
-          MouseConstraint = Matter.MouseConstraint;
-
-    // Create an engine
-    const engine = Engine.create();
-    
-    // Create a renderer
-    const render = Render.create({
-        canvas: canvas,
-        engine: engine,
-        options: {
-            width: window.innerWidth,
-            height: window.innerHeight,
-            background: 'transparent',
-            wireframes: false,
-            pixelRatio: window.devicePixelRatio
-        }
-    });
+    const ctx = canvas.getContext('2d');
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
 
     // Get colors from CSS variables
     const style = getComputedStyle(document.body);
     const primaryColor = style.getPropertyValue('--primary').trim() || '#e0b85b';
     const accentColor = style.getPropertyValue('--accent').trim() || '#2f8b76';
-    
-    // Convert hex to solid hex for Matter.js
-    function rgb2hex(rgb){
-         rgb = rgb.match(/^rgba?[\s+]?\([\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?,[\s+]?(\d+)[\s+]?/i);
-         return (rgb && rgb.length === 4) ? "#" +
-          ("0" + parseInt(rgb[1],10).toString(16)).slice(-2) +
-          ("0" + parseInt(rgb[2],10).toString(16)).slice(-2) +
-          ("0" + parseInt(rgb[3],10).toString(16)).slice(-2) : '';
-    }
-    
-    // Fallback if variables are already hex
-    const color1 = primaryColor.startsWith('#') ? primaryColor : rgb2hex(primaryColor) || '#e0b85b';
-    const color2 = accentColor.startsWith('#') ? accentColor : rgb2hex(accentColor) || '#2f8b76';
 
-    const bodies = [];
-    const numShapes = Math.min(12, Math.floor(window.innerWidth / 100)); // Responsive density
-
-    // Create organic looking shapes (circles, soft polygons)
-    for (let i = 0; i < numShapes; i++) {
-        const radius = Math.random() * 80 + 40;
-        const x = Math.random() * window.innerWidth;
-        const y = Math.random() * -500 - 100; // Drop from above screen
-        
-        const isCircle = Math.random() > 0.5;
-        const color = Math.random() > 0.5 ? color1 : color2;
-        
-        let body;
-        if (isCircle) {
-            body = Bodies.circle(x, y, radius, {
-                restitution: 0.6,
-                friction: 0.1,
-                render: {
-                    fillStyle: color,
-                    opacity: 0.15 // Translucent like glass
-                }
-            });
-        } else {
-            body = Bodies.polygon(x, y, Math.floor(Math.random() * 3) + 5, radius, {
-                restitution: 0.5,
-                chamfer: { radius: radius * 0.4 }, // Soft rounded corners
-                render: {
-                    fillStyle: color,
-                    opacity: 0.12
-                }
-            });
+    function getRGBA(colorStr, alpha) {
+        if (colorStr.startsWith('#')) {
+            const hex = colorStr.replace('#', '');
+            const r = parseInt(hex.substring(0, 2), 16);
+            const g = parseInt(hex.substring(2, 4), 16);
+            const b = parseInt(hex.substring(4, 6), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
         }
-        bodies.push(body);
+        return colorStr;
     }
 
-    // Walls & Floor
-    const wallOptions = { 
-        isStatic: true, 
-        render: { visible: false } 
-    };
-    
-    const floor = Bodies.rectangle(window.innerWidth / 2, window.innerHeight + 50, window.innerWidth * 2, 100, wallOptions);
-    const leftWall = Bodies.rectangle(-50, window.innerHeight / 2, 100, window.innerHeight * 2, wallOptions);
-    const rightWall = Bodies.rectangle(window.innerWidth + 50, window.innerHeight / 2, 100, window.innerHeight * 2, wallOptions);
+    const color1 = getRGBA(primaryColor, 0.15);
+    const color2 = getRGBA(accentColor, 0.12);
 
-    // Add all bodies to the world
-    Composite.add(engine.world, [...bodies, floor, leftWall, rightWall]);
+    // Create blobs
+    const blobs = [];
+    const numBlobs = Math.min(6, Math.floor((width * height) / 150000) + 2);
 
-    // Add mouse control
-    const mouse = Mouse.create(render.canvas);
-    const mouseConstraint = MouseConstraint.create(engine, {
-        mouse: mouse,
-        constraint: {
-            stiffness: 0.2,
-            render: {
-                visible: false
-            }
-        }
+    for (let i = 0; i < numBlobs; i++) {
+        blobs.push({
+            x: Math.random() * width,
+            y: Math.random() * height,
+            radius: Math.random() * 200 + 200, // Large soft shapes
+            baseX: Math.random() * width,
+            baseY: Math.random() * height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            color: i % 2 === 0 ? color1 : color2
+        });
+    }
+
+    const mouse = { x: -1000, y: -1000, active: false };
+
+    window.addEventListener('mousemove', (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.active = true;
     });
 
-    Composite.add(engine.world, mouseConstraint);
-    
-    // Keep the mouse in sync with rendering
-    render.mouse = mouse;
+    window.addEventListener('mouseleave', () => {
+        mouse.active = false;
+    });
 
-    // Run the renderer
-    Render.run(render);
-
-    // Create runner
-    const runner = Runner.create();
-    Runner.run(runner, engine);
-
-    // Handle Resize
     window.addEventListener('resize', () => {
-        render.bounds.max.x = window.innerWidth;
-        render.bounds.max.y = window.innerHeight;
-        render.options.width = window.innerWidth;
-        render.options.height = window.innerHeight;
-        render.canvas.width = window.innerWidth;
-        render.canvas.height = window.innerHeight;
-
-        // Reposition floor and walls
-        Matter.Body.setPosition(floor, { x: window.innerWidth / 2, y: window.innerHeight + 50 });
-        Matter.Body.setPosition(rightWall, { x: window.innerWidth + 50, y: window.innerHeight / 2 });
-        Matter.Body.setPosition(leftWall, { x: -50, y: window.innerHeight / 2 });
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
     });
+
+    function animate() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.globalCompositeOperation = 'screen';
+
+        blobs.forEach((blob) => {
+            // Natural drift
+            blob.baseX += blob.vx;
+            blob.baseY += blob.vy;
+
+            // Bounce off walls smoothly
+            if (blob.baseX - blob.radius < -100 || blob.baseX + blob.radius > width + 100) {
+                blob.vx *= -1;
+            }
+            if (blob.baseY - blob.radius < -100 || blob.baseY + blob.radius > height + 100) {
+                blob.vy *= -1;
+            }
+
+            // Magnetic Repulsion from mouse
+            let repelX = 0;
+            let repelY = 0;
+
+            if (mouse.active) {
+                const dx = blob.baseX - mouse.x;
+                const dy = blob.baseY - mouse.y;
+                const dist = Math.hypot(dx, dy);
+                
+                const magnetRadius = 400; // Range of the magnetic field
+                if (dist < magnetRadius && dist > 0) {
+                    // Force gets stronger as it gets closer
+                    const force = (magnetRadius - dist) / magnetRadius;
+                    repelX = (dx / dist) * force * 150; // Max displacement
+                    repelY = (dy / dist) * force * 150;
+                }
+            }
+
+            // Smooth interpolation towards the target position
+            blob.x += ((blob.baseX + repelX) - blob.x) * 0.05 || 0;
+            blob.y += ((blob.baseY + repelY) - blob.y) * 0.05 || 0;
+            
+            // Initialization safeguard
+            if (isNaN(blob.x)) blob.x = blob.baseX;
+            if (isNaN(blob.y)) blob.y = blob.baseY;
+
+            // Draw blob with massive soft radial gradient
+            const gradient = ctx.createRadialGradient(
+                blob.x, blob.y, 0,
+                blob.x, blob.y, blob.radius
+            );
+            gradient.addColorStop(0, blob.color);
+            gradient.addColorStop(0.5, blob.color.replace(/0\.\d+/, '0.05')); // Softer edge
+            gradient.addColorStop(1, 'rgba(0, 0, 0, 0)');
+
+            ctx.beginPath();
+            ctx.arc(blob.x, blob.y, blob.radius, 0, Math.PI * 2);
+            ctx.fillStyle = gradient;
+            ctx.fill();
+        });
+
+        requestAnimationFrame(animate);
+    }
+
+    animate();
 }
 
 function initMagneticHover() {
