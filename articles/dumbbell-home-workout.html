@@ -13,7 +13,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "The Complete Dumbbell-Only Home Workout Guide",
-      "image": "https://vasishta-atmuri.github.io/assets/Sidepeeking.png",
+      "image": "https://torq-tribe.github.io/assets/tora-goblet-squat.jpg",
       "author": {
         "@type": "Organization",
         "name": "Torq Tribe"
@@ -23,7 +23,7 @@
         "name": "Torq Tribe",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://vasishta-atmuri.github.io/assets/Logo%20new.png"
+          "url": "https://torq-tribe.github.io/assets/Logo%20new.png"
         }
       },
       "datePublished": "2026-05-19"
@@ -51,7 +51,7 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; }
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: 0; }
         h1 {
             font-size: 3rem;
             line-height: 1.2;
@@ -96,7 +96,7 @@
             width: 100%; max-width: 1000px; height: 400px; margin: 0 auto 60px;
             background-image: url('../assets/Sidepeeking.png');
             background-size: cover; background-position: center;
-            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .article-content {
             max-width: 800px; margin: 0 auto; padding: 0 5% 80px;
@@ -121,7 +121,7 @@
         /* --- CTA --- */
         .cta-box {
             background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,69,0,0.05));
-            border: 1px solid var(--primary); border-radius: 16px;
+            border: 1px solid var(--primary); border-radius: 8px;
             padding: 40px; text-align: center; margin: 60px 0;
         }
         .cta-box h2 { margin-top: 0; }
@@ -156,9 +156,10 @@
             .footer-col { width: 100%; }
         }
     </style>
+    <link rel="stylesheet" href="../assets/article-styles.css">
 </head>
 
-<body>
+<body class="article-page theme-home">
 
     <nav>
         <a href="../index.html" class="logo">
@@ -171,15 +172,31 @@
         </div>
     </nav>
 
-    <div class="article-header">
-        <div class="article-meta">Home Workouts</div>
-        <h1>The Complete Dumbbell-Only Home Workout Guide</h1>
-    </div>
-
-    <div class="article-hero-img"></div>
+    <header class="article-hero">
+        <div class="article-hero-copy">
+            <div class="article-meta">Home Workouts</div>
+            <h1>The Complete Dumbbell-Only Home Workout Guide</h1>
+            <p class="article-dek">A compact upper/lower plan that turns one pair of dumbbells into a complete four-day strength routine.</p>
+            <div class="hero-tags" aria-label="Program highlights">
+                <span><b>Equipment</b>Dumbbells only</span>
+                <span><b>Schedule</b>4 days / week</span>
+                <span><b>Goal</b>Muscle at home</span>
+            </div>
+        </div>
+        <figure class="article-hero-media hero-media-tall">
+            <img src="../assets/tora-goblet-squat.jpg" alt="Tora performing a dumbbell goblet squat on a jungle workout mat">
+            <figcaption>The goblet squat is the anchor: simple setup, big leg stimulus, and easy form feedback.</figcaption>
+        </figure>
+    </header>
 
     <article class="article-content">
         <p>A common misconception is that you need barbells, machines, and a $100/month gym membership to build an impressive physique. In reality, a pair of dumbbells and the right intensity can ignite serious muscle growth right from your living room.</p>
+
+        <section class="quick-panel" aria-label="Dumbbell plan quick facts">
+            <div class="quick-stat"><b>Best for</b>Apartment, garage, or travel workouts.</div>
+            <div class="quick-stat"><b>Key rule</b>Slow lowering beats rushed reps.</div>
+            <div class="quick-stat"><b>Intensity</b>Stop 1-2 reps before form breaks.</div>
+        </section>
 
         <h2>The Secret to Home Workouts: Progressive Overload</h2>
         <p>The main challenge with dumbbell-only home workouts is that you usually don't have enough weight. If you can only bench press 50 lb dumbbells, how do you keep growing once that becomes easy?</p>
@@ -191,6 +208,21 @@
 
         <h2>The Dumbbell Mastery Plan</h2>
         <p>This is an upper/lower split you can run 4 days a week. It requires nothing but dumbbells and gravity.</p>
+
+        <section class="content-band">
+            <h2>Two Moves to Nail</h2>
+            <p>With dumbbells, form and tempo do most of the heavy lifting. Use these two patterns to make light weights feel serious.</p>
+            <div class="movement-grid">
+                <figure class="movement-card is-square">
+                    <img src="../assets/tora-lunge-waterfall.jpg" alt="Tora performing a dumbbell walking lunge near a jungle waterfall" loading="lazy">
+                    <figcaption>For lunges, keep the front foot planted and lower under control before driving back up.</figcaption>
+                </figure>
+                <figure class="movement-card">
+                    <img src="../assets/torq-overhead-press.jpg" alt="Torq performing a standing dumbbell overhead press in a jungle gym" loading="lazy">
+                    <figcaption>For presses, lock in your ribs and squeeze the glutes so the weight moves over a stable base.</figcaption>
+                </figure>
+            </div>
+        </section>
 
         <div class="workout-day">
             <h4>Upper Body Day</h4>

@@ -13,7 +13,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "PPL vs. Full Body: Which Split is Right for Your Level?",
-      "image": "https://vasishta-atmuri.github.io/assets/top%20banner.png",
+      "image": "https://torq-tribe.github.io/assets/split-training-camp.jpg",
       "author": {
         "@type": "Organization",
         "name": "Torq Tribe"
@@ -23,7 +23,7 @@
         "name": "Torq Tribe",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://vasishta-atmuri.github.io/assets/Logo%20new.png"
+          "url": "https://torq-tribe.github.io/assets/Logo%20new.png"
         }
       },
       "datePublished": "2026-05-19"
@@ -51,7 +51,7 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; }
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: 0; }
         h1 {
             font-size: 3rem;
             line-height: 1.2;
@@ -97,7 +97,7 @@
             background-image: url('../assets/top%20banner.png');
             background-color: #1a1a1a;
             background-size: contain; background-repeat: no-repeat; background-position: center;
-            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .article-content {
             max-width: 800px; margin: 0 auto; padding: 0 5% 80px;
@@ -122,7 +122,7 @@
         /* --- CTA --- */
         .cta-box {
             background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,69,0,0.05));
-            border: 1px solid var(--primary); border-radius: 16px;
+            border: 1px solid var(--primary); border-radius: 8px;
             padding: 40px; text-align: center; margin: 60px 0;
         }
         .cta-box h2 { margin-top: 0; }
@@ -157,9 +157,10 @@
             .footer-col { width: 100%; }
         }
     </style>
+    <link rel="stylesheet" href="../assets/article-styles.css">
 </head>
 
-<body>
+<body class="article-page theme-split">
 
     <nav>
         <a href="../index.html" class="logo">
@@ -172,15 +173,36 @@
         </div>
     </nav>
 
-    <div class="article-header">
-        <div class="article-meta">Training Splits</div>
-        <h1>PPL vs. Full Body: Which Split is Right for Your Level?</h1>
-    </div>
-
-    <div class="article-hero-img"></div>
+    <header class="article-hero">
+        <div class="article-hero-copy">
+            <div class="article-meta">Training Splits</div>
+            <h1>PPL vs. Full Body: Which Split is Right for Your Level?</h1>
+            <p class="article-dek">Both splits work. The better choice depends on how often you can train, how well you recover, and how much volume your body can actually use.</p>
+            <div class="hero-tags" aria-label="Comparison highlights">
+                <span><b>Full Body</b>3 days / week</span>
+                <span><b>PPL</b>6 days / week</span>
+                <span><b>Decision</b>Recovery first</span>
+            </div>
+        </div>
+        <figure class="article-hero-media hero-media-wide">
+            <img src="../assets/split-training-camp.jpg" alt="Tora performing a dumbbell floor press while Torq performs a bent-over row in a jungle training camp">
+            <figcaption>Full body spreads the stress across fewer days. PPL lets you pour more volume into each movement pattern.</figcaption>
+        </figure>
+    </header>
 
     <article class="article-content">
         <p>If you spend more than five minutes on Reddit fitness communities, you will see the age-old debate: Push/Pull/Legs (PPL) vs Full Body. People argue passionately for both, but the truth is, the best split depends entirely on your training age and schedule.</p>
+
+        <section class="split-picker" aria-label="Split decision summary">
+            <div class="split-card">
+                <b>Choose Full Body If</b>
+                <p>You are newer, busy, or want more practice with the same lifts each week.</p>
+            </div>
+            <div class="split-card">
+                <b>Choose PPL If</b>
+                <p>You can train consistently six days per week and recover from higher volume.</p>
+            </div>
+        </section>
 
         <h2>The Case for Full Body</h2>
         <p>A Full Body split involves training all major muscle groups in a single session, usually 3 days a week. It focuses heavily on compound movements like Squats, Deadlifts, and Presses.</p>
@@ -198,6 +220,25 @@
 
         <h2>The Torq Tribe Intermediate PPL</h2>
         <p>If you're ready to make the jump to a 6-day split, here is the foundation of a great Push/Pull/Legs routine.</p>
+
+        <section class="content-band">
+            <h2>Push, Pull, Legs in Pictures</h2>
+            <p>A good PPL week is not random exercise variety. It is the same movement families repeated with enough focus to progress.</p>
+            <div class="movement-grid three-up">
+                <figure class="movement-card">
+                    <img src="../assets/torq-overhead-press.jpg" alt="Torq pressing dumbbells overhead for a push-day movement" loading="lazy">
+                    <figcaption><strong>Push:</strong> Presses train chest, shoulders, and triceps.</figcaption>
+                </figure>
+                <figure class="movement-card">
+                    <img src="../assets/torq-rdl-cave.jpg" alt="Torq hinging with a primitive barbell for a pull-day movement" loading="lazy">
+                    <figcaption><strong>Pull:</strong> Rows and hinges build the back side of the body.</figcaption>
+                </figure>
+                <figure class="movement-card">
+                    <img src="../assets/torq-squat-training.jpg" alt="Torq squatting with a primitive stone barbell for leg day" loading="lazy">
+                    <figcaption><strong>Legs:</strong> Squats and leg presses drive quad and glute volume.</figcaption>
+                </figure>
+            </div>
+        </section>
 
         <div class="workout-day">
             <h4>Push Day (Chest, Shoulders, Triceps)</h4>

@@ -38,7 +38,7 @@
         /* --- TYPOGRAPHY --- */
         h1, h2, h3, h4 {
             font-weight: 800;
-            letter-spacing: -0.02em;
+            letter-spacing: 0;
         }
 
         h1 {
@@ -133,8 +133,9 @@
         }
 
         .blog-card {
+            --card-accent: var(--primary);
             background: var(--bg-card);
-            border-radius: 16px;
+            border-radius: 8px;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -144,8 +145,8 @@
 
         .blog-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(255, 140, 0, 0.15);
-            border-color: rgba(255, 140, 0, 0.3);
+            box-shadow: 0 20px 40px color-mix(in srgb, var(--card-accent) 24%, transparent);
+            border-color: color-mix(in srgb, var(--card-accent) 44%, transparent);
         }
 
         .blog-card-image {
@@ -153,6 +154,22 @@
             background-color: #222;
             background-size: cover;
             background-position: center;
+        }
+
+        .blog-card.featured {
+            grid-column: span 2;
+        }
+
+        .blog-card.featured .blog-card-image {
+            height: 300px;
+        }
+
+        .blog-card--home {
+            --card-accent: #5bb5aa;
+        }
+
+        .blog-card--split {
+            --card-accent: #ee6b42;
         }
 
         .blog-card-content {
@@ -163,7 +180,7 @@
         }
 
         .blog-card-category {
-            color: var(--primary);
+            color: var(--card-accent);
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -193,7 +210,7 @@
         }
 
         .read-more {
-            color: var(--primary);
+            color: var(--card-accent);
             font-weight: 700;
             font-size: 0.95rem;
             display: flex;
@@ -269,22 +286,64 @@
                 width: 100%;
                 justify-content: center;
                 flex-wrap: wrap;
-                gap: 16px;
+                gap: 10px;
                 margin-top: 10px;
             }
 
             .nav-links a {
                 margin-left: 0;
-                font-size: 0.95rem;
+                font-size: 0.84rem;
             }
 
             .hero {
                 padding-top: 160px;
+                padding-left: 16px;
+                padding-right: 16px;
+                overflow: hidden;
+            }
+
+            .hero h1 {
+                max-width: 310px;
+                margin-left: auto;
+                margin-right: auto;
+                font-size: 2.2rem;
+                overflow-wrap: anywhere;
+            }
+
+            .hero p {
+                max-width: 310px;
+                margin-left: auto;
+                margin-right: auto;
+                overflow-wrap: anywhere;
             }
 
             .blog-container {
-                padding: 20px 5% 80px;
+                max-width: 370px;
+                margin-left: 0;
+                margin-right: 0;
+                padding: 20px 14px 80px;
                 grid-template-columns: 1fr;
+            }
+
+            .blog-card {
+                max-width: 342px;
+            }
+
+            .blog-card-content {
+                padding: 24px;
+            }
+
+            .blog-card h2,
+            .blog-card p {
+                overflow-wrap: anywhere;
+            }
+
+            .blog-card.featured {
+                grid-column: span 1;
+            }
+
+            .blog-card.featured .blog-card-image {
+                height: 220px;
             }
 
             footer {
@@ -323,8 +382,8 @@
     <div class="blog-container">
         
         <!-- Article 1 -->
-        <a href="articles/beginner-full-body-plan.html" class="blog-card">
-            <div class="blog-card-image" style="background-image: url('assets/wooden dumbbell.jpg');"></div>
+        <a href="articles/beginner-full-body-plan.html" class="blog-card featured">
+            <div class="blog-card-image" style="background-image: url('assets/torq-squat-training.jpg');"></div>
             <div class="blog-card-content">
                 <div class="blog-card-category">Beginner Guides</div>
                 <h2>The Ultimate 3-Day Beginner Full Body Workout Plan</h2>
@@ -336,8 +395,8 @@
         </a>
 
         <!-- Article 2 -->
-        <a href="articles/dumbbell-home-workout.html" class="blog-card">
-            <div class="blog-card-image" style="background-image: url('assets/top banner.png');"></div>
+        <a href="articles/dumbbell-home-workout.html" class="blog-card blog-card--home">
+            <div class="blog-card-image" style="background-image: url('assets/tora-goblet-squat.jpg');"></div>
             <div class="blog-card-content">
                 <div class="blog-card-category">Home Workouts</div>
                 <h2>The Complete Dumbbell-Only Home Workout Guide</h2>
@@ -349,8 +408,8 @@
         </a>
 
         <!-- Article 3 -->
-        <a href="articles/ppl-vs-full-body.html" class="blog-card">
-            <div class="blog-card-image" style="background-image: url('assets/Sidepeeking.png'); background-size: contain; background-repeat: no-repeat;"></div>
+        <a href="articles/ppl-vs-full-body.html" class="blog-card blog-card--split">
+            <div class="blog-card-image" style="background-image: url('assets/split-training-camp.jpg');"></div>
             <div class="blog-card-content">
                 <div class="blog-card-category">Training splits</div>
                 <h2>PPL vs. Full Body: Which Split is Right for Your Level?</h2>

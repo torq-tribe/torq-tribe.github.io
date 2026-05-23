@@ -13,7 +13,7 @@
       "@context": "https://schema.org",
       "@type": "Article",
       "headline": "The Ultimate 3-Day Beginner Full Body Workout Plan",
-      "image": "https://vasishta-atmuri.github.io/assets/Splash%20Screen.png",
+      "image": "https://torq-tribe.github.io/assets/torq-squat-training.jpg",
       "author": {
         "@type": "Organization",
         "name": "Torq Tribe"
@@ -23,7 +23,7 @@
         "name": "Torq Tribe",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://vasishta-atmuri.github.io/assets/Logo%20new.png"
+          "url": "https://torq-tribe.github.io/assets/Logo%20new.png"
         }
       },
       "datePublished": "2026-05-19"
@@ -51,7 +51,7 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 { font-weight: 800; letter-spacing: -0.02em; }
+        h1, h2, h3, h4 { font-weight: 800; letter-spacing: 0; }
         h1 {
             font-size: 3rem;
             line-height: 1.2;
@@ -96,7 +96,7 @@
             width: 100%; max-width: 1000px; height: 400px; margin: 0 auto 60px;
             background-image: url('../assets/Splash%20Screen.png');
             background-size: cover; background-position: center;
-            border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            border-radius: 8px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);
         }
         .article-content {
             max-width: 800px; margin: 0 auto; padding: 0 5% 80px;
@@ -121,7 +121,7 @@
         /* --- CTA --- */
         .cta-box {
             background: linear-gradient(135deg, rgba(255,140,0,0.1), rgba(255,69,0,0.05));
-            border: 1px solid var(--primary); border-radius: 16px;
+            border: 1px solid var(--primary); border-radius: 8px;
             padding: 40px; text-align: center; margin: 60px 0;
         }
         .cta-box h2 { margin-top: 0; }
@@ -156,9 +156,10 @@
             .footer-col { width: 100%; }
         }
     </style>
+    <link rel="stylesheet" href="../assets/article-styles.css">
 </head>
 
-<body>
+<body class="article-page theme-beginner">
 
     <nav>
         <a href="../index.html" class="logo">
@@ -171,17 +172,33 @@
         </div>
     </nav>
 
-    <div class="article-header">
-        <div class="article-meta">Beginner Guides</div>
-        <h1>The Ultimate 3-Day Beginner Full Body Workout Plan</h1>
-    </div>
-
-    <div class="article-hero-img"></div>
+    <header class="article-hero">
+        <div class="article-hero-copy">
+            <div class="article-meta">Beginner Guides</div>
+            <h1>The Ultimate 3-Day Beginner Full Body Workout Plan</h1>
+            <p class="article-dek">A simple, repeatable full-body plan built around the moves beginners need most: squat, press, hinge, row, and lunge.</p>
+            <div class="hero-tags" aria-label="Program highlights">
+                <span><b>Schedule</b>3 days / week</span>
+                <span><b>Session</b>45-60 minutes</span>
+                <span><b>Goal</b>Form + muscle</span>
+            </div>
+        </div>
+        <figure class="article-hero-media hero-media-wide">
+            <img src="../assets/torq-squat-training.jpg" alt="Torq performing a low-bar back squat with a stone barbell in a jungle clearing">
+            <figcaption>Start with the big pattern: controlled squats, steady breathing, and clean reps before heavy loading.</figcaption>
+        </figure>
+    </header>
 
     <article class="article-content">
         <p>If you're completely new to the gym, stepping onto the floor for the first time can be intimidating. You see people doing 5-day isolation splits, running complex cable setups, and you wonder: <em>Where do I even begin?</em></p>
         
         <p>The answer is simple: <strong>Full Body Training.</strong></p>
+
+        <section class="quick-panel" aria-label="Beginner plan quick facts">
+            <div class="quick-stat"><b>How to run it</b>Alternate Workout A and B for 4 weeks.</div>
+            <div class="quick-stat"><b>Rest</b>Take at least one rest day between sessions.</div>
+            <div class="quick-stat"><b>Progress</b>Add a rep or small weight jump only when form stays clean.</div>
+        </section>
 
         <h2>Why Full Body is King for Beginners</h2>
         <p>When you first start lifting, your body is highly responsive to stimulus. You don't need to destroy a single muscle group with 15 sets of chest exercises to grow. Instead, you need frequency and practice.</p>
@@ -193,6 +210,21 @@
 
         <h2>The Routine: Beginner Awakening</h2>
         <p>This routine is built around primal, compound movements. You will train 3 days a week (e.g., Monday, Wednesday, Friday) with at least one rest day in between.</p>
+
+        <section class="content-band">
+            <h2>Move Like This</h2>
+            <p>Think of the plan as practice first and intensity second. Each rep should look like a demonstration you would be comfortable showing a coach.</p>
+            <div class="movement-grid">
+                <figure class="movement-card">
+                    <img src="../assets/torq-overhead-press.jpg" alt="Torq pressing two primitive dumbbells overhead in a jungle training area" loading="lazy">
+                    <figcaption>Presses build shoulders and trunk control. Keep ribs down and finish with the biceps near the ears.</figcaption>
+                </figure>
+                <figure class="movement-card is-tall">
+                    <img src="../assets/torq-rdl-cave.jpg" alt="Torq performing a primitive barbell hinge at a misty jungle cave entrance" loading="lazy">
+                    <figcaption>Hinges teach the hips to move while the spine stays braced. Slow tempo beats sloppy speed.</figcaption>
+                </figure>
+            </div>
+        </section>
 
         <div class="workout-day">
             <h4>Workout A &mdash; Full Body Hypertrophy</h4>
