@@ -361,6 +361,149 @@ nav {
     margin-top: 0;
 }
 
+.gallery-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 12px;
+}
+
+.section-kicker {
+    margin: 0 0 8px;
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: 0.84rem;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.carousel-actions {
+    display: flex;
+    gap: 10px;
+    flex: 0 0 auto;
+}
+
+.carousel-btn {
+    width: 46px;
+    height: 46px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.045);
+    color: var(--article-cream);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(14px);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, background 0.3s ease;
+}
+
+.carousel-btn:hover {
+    border-color: color-mix(in srgb, var(--primary) 42%, transparent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.exercise-carousel {
+    position: relative;
+    margin-top: 30px;
+}
+
+.exercise-track {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(320px, 46%);
+    gap: 18px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 2px;
+    padding: 4px 4px 18px;
+    outline: none;
+    scrollbar-color: color-mix(in srgb, var(--primary) 58%, transparent) rgba(255, 255, 255, 0.08);
+}
+
+.exercise-track::-webkit-scrollbar {
+    height: 10px;
+}
+
+.exercise-track::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.07);
+    border-radius: 999px;
+}
+
+.exercise-track::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 999px;
+}
+
+.exercise-slide {
+    min-width: 0;
+    overflow: hidden;
+    scroll-snap-align: start;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+    transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease;
+}
+
+.exercise-slide:hover {
+    transform: translateY(-5px);
+    border-color: color-mix(in srgb, var(--primary) 35%, transparent);
+    background: rgba(255, 255, 255, 0.055);
+}
+
+.exercise-slide img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.exercise-slide-body {
+    padding: 22px;
+}
+
+.exercise-chip,
+.exercise-prescription {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--primary);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.exercise-chip {
+    padding: 7px 11px;
+    margin-bottom: 14px;
+}
+
+.exercise-slide h3 {
+    margin: 0 0 10px;
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+}
+
+.exercise-slide p {
+    margin-bottom: 16px;
+    font-size: 0.98rem;
+    color: var(--article-copy);
+}
+
+.exercise-prescription {
+    padding: 8px 12px;
+    color: var(--article-cream);
+}
+
 .movement-grid {
     grid-template-columns: 1.15fr 0.85fr;
     align-items: stretch;
@@ -569,8 +712,17 @@ footer {
     .quick-panel,
     .movement-grid,
     .movement-grid.three-up,
-    .split-picker {
+    .split-picker,
+    .gallery-heading {
         grid-template-columns: 1fr;
+    }
+
+    .gallery-heading {
+        display: grid;
+    }
+
+    .exercise-track {
+        grid-auto-columns: minmax(300px, 84%);
     }
 
     .content-band {
@@ -630,8 +782,28 @@ footer {
     .article-hero-copy,
     .hero-tags,
     .quick-panel,
-    .split-picker {
+    .split-picker,
+    .gallery-heading {
         max-width: 342px;
+    }
+
+    .carousel-actions {
+        justify-content: flex-start;
+    }
+
+    .exercise-track {
+        grid-auto-columns: minmax(280px, 100%);
+        gap: 14px;
+        margin-left: -2px;
+        margin-right: -2px;
+    }
+
+    .exercise-slide {
+        border-radius: 22px;
+    }
+
+    .exercise-slide-body {
+        padding: 18px;
     }
 
     .hero-tags span,

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticCanvas();
     initMagneticHover();
     initScrollProgress();
+    initExerciseCarousels();
 });
 
 function initMagneticCanvas() {
@@ -158,5 +159,35 @@ function initScrollProgress() {
         const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
         const scrolled = (winScroll / height) * 100;
         progressBar.style.width = scrolled + '%';
+    });
+}
+
+function initExerciseCarousels() {
+    const carousels = document.querySelectorAll('[data-carousel]');
+    if (!carousels.length) return;
+
+    carousels.forEach((carousel) => {
+        const track = carousel.querySelector('[data-carousel-track]');
+        const section = carousel.closest('.exercise-gallery');
+        const previousButton = section?.querySelector('[data-carousel-prev]');
+        const nextButton = section?.querySelector('[data-carousel-next]');
+
+        if (!track || !previousButton || !nextButton) return;
+
+        const getScrollAmount = () => {
+            const slide = track.querySelector('.exercise-slide');
+            if (!slide) return track.clientWidth;
+            const styles = window.getComputedStyle(track);
+            const gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+            return slide.getBoundingClientRect().width + gap;
+        };
+
+        previousButton.addEventListener('click', () => {
+            track.scrollBy({ left: -getScrollAmount(), behavior: 'smooth' });
+        });
+
+        nextButton.addEventListener('click', () => {
+            track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
+        });
     });
 }
