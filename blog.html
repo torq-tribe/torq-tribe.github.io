@@ -10,8 +10,8 @@
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap');
 
         :root {
-            --bg-dark: #0a0a0a;
-            --bg-card: #141414;
+            --bg-dark: #060705;
+            --bg-card: rgba(255, 255, 255, 0.03);
             --text-main: #ffffff;
             --text-muted: #a9a392;
             --primary: #e0b85b;
@@ -37,6 +37,17 @@
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* --- BACKGROUND CANVAS --- */
+        #gravity-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            pointer-events: none;
         }
 
         /* --- TYPOGRAPHY --- */
@@ -83,7 +94,7 @@
             align-items: center;
             padding: 0 5%;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(6, 7, 5, 0.75);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             transition: all 0.3s ease;
@@ -106,12 +117,17 @@
             transform: scale(1.05);
         }
 
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
         .nav-links a {
             margin-left: 40px;
             font-size: 1.15rem;
             font-weight: 700;
-            opacity: 1;
             color: var(--text-main);
+            display: inline-block;
         }
 
         .nav-links a:hover {
@@ -122,7 +138,7 @@
         .hero {
             padding: calc(var(--nav-height) + 60px) 10% 60px;
             text-align: center;
-            background: radial-gradient(circle at 50% 0%, #171c17 0%, var(--bg-dark) 70%);
+            background: transparent;
         }
 
         .hero p {
@@ -153,6 +169,19 @@
         .blog-card:nth-child(2) { animation-delay: 0.55s; }
         .blog-card:nth-child(3) { animation-delay: 0.7s; }
 
+        /* --- MORPHING BLOB KEYFRAMES --- */
+        @keyframes morphBlob {
+            0% {
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+            50% {
+                border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+            }
+            100% {
+                border-radius: 50% 50% 40% 60% / 40% 60% 40% 60%;
+            }
+        }
+
         /* --- BLOG GRID --- */
         .blog-container {
             padding: 40px 10% 120px;
@@ -164,9 +193,10 @@
         .blog-card {
             --card-accent: var(--primary);
             background: var(--bg-card);
-            border-radius: 8px;
+            backdrop-filter: blur(25px);
+            border-radius: 40px;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.06);
             transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.6s ease;
             display: flex;
             flex-direction: column;
@@ -180,15 +210,19 @@
         }
 
         .blog-card-image {
-            height: 200px;
+            height: 220px;
             background-color: #222;
             background-size: cover;
             background-position: center;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            margin: 24px 24px 10px;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: morphBlob 12s ease-in-out infinite alternate;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), border-radius 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .blog-card:hover .blog-card-image {
-            transform: scale(1.05);
+            transform: scale(1.04) rotate(1deg);
+            border-radius: 40% 60% 60% 40% / 50% 60% 40% 50%;
         }
 
         .blog-card.featured {
@@ -197,7 +231,7 @@
         }
 
         .blog-card.featured .blog-card-image {
-            height: 300px;
+            height: 320px;
         }
 
         .blog-card--home {
@@ -209,7 +243,7 @@
         }
 
         .blog-card-content {
-            padding: 30px;
+            padding: 24px 34px 34px;
             display: flex;
             flex-direction: column;
             flex-grow: 1;
@@ -236,12 +270,8 @@
             transition: color 0.3s ease;
         }
 
-        .blog-card:hover h2 {
-            color: #fff;
-        }
-
         .blog-card p {
-            font-size: 1rem;
+            font-size: 1.05rem;
             margin-bottom: 25px;
             flex-grow: 1;
         }
@@ -280,6 +310,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
+            background: transparent;
         }
 
         .footer-col h4 {
@@ -311,6 +342,15 @@
         }
 
         /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 980px) {
+            .blog-card.featured {
+                grid-column: span 1;
+            }
+            .blog-card.featured .blog-card-image {
+                height: 220px;
+            }
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2.5rem;
@@ -320,7 +360,7 @@
                 height: auto;
                 flex-direction: column;
                 padding: 12px 16px;
-                background: rgba(10, 10, 10, 0.95);
+                background: rgba(6, 7, 5, 0.95);
             }
 
             .logo img {
@@ -365,8 +405,8 @@
 
             .blog-container {
                 max-width: 370px;
-                margin-left: 0;
-                margin-right: 0;
+                margin-left: auto;
+                margin-right: auto;
                 padding: 20px 14px 80px;
                 grid-template-columns: 1fr;
             }
@@ -375,8 +415,13 @@
                 max-width: 342px;
             }
 
+            .blog-card-image {
+                margin: 16px 16px 6px;
+                height: 190px;
+            }
+
             .blog-card-content {
-                padding: 24px;
+                padding: 20px 24px 24px;
             }
 
             .blog-card h2,
@@ -384,12 +429,8 @@
                 overflow-wrap: anywhere;
             }
 
-            .blog-card.featured {
-                grid-column: span 1;
-            }
-
             .blog-card.featured .blog-card-image {
-                height: 220px;
+                height: 190px;
             }
 
             footer {
@@ -407,16 +448,18 @@
 </head>
 
 <body>
+    <!-- Background Canvas -->
+    <canvas id="gravity-bg"></canvas>
 
     <nav>
         <a href="index.html" class="logo">
             <img src="assets/Logo new.png" alt="Torq Tribe Logo">
         </a>
         <div class="nav-links">
-            <a href="index.html#features">Features</a>
-            <a href="index.html#torq">Meet Torq</a>
-            <a href="blog.html" style="color: var(--primary);">Blog</a>
-            <a href="https://apps.apple.com/us/app/torq-tribe-gamified-fitness/id6757682701" target="_blank" rel="noopener noreferrer" style="color: var(--primary); font-weight: bold;">Download</a>
+            <a href="index.html#features" class="magnetic-el">Features</a>
+            <a href="index.html#torq" class="magnetic-el">Meet Torq</a>
+            <a href="blog.html" class="magnetic-el" style="color: var(--primary);">Blog</a>
+            <a href="https://apps.apple.com/us/app/torq-tribe-gamified-fitness/id6757682701" target="_blank" rel="noopener noreferrer" class="magnetic-el" style="color: var(--primary); font-weight: bold;">Download</a>
         </div>
     </nav>
 
@@ -490,5 +533,7 @@
         </div>
     </footer>
 
+    <!-- Interactive script for gravity and magnetic pull -->
+    <script src="assets/blog-interactions.js"></script>
 </body>
 </html>
