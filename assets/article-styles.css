@@ -655,11 +655,12 @@ footer {
 
     .article-hero-media figcaption,
     .movement-card figcaption {
-        position: static;
-        border: 0;
-        border-top: 1px solid var(--article-line);
-        border-radius: 0;
-        background: rgba(8, 9, 7, 0.94);
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 10px 14px;
+        font-size: 0.82rem;
+        border-radius: 14px;
     }
 
     .article-hero-media img {
