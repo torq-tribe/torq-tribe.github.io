@@ -449,12 +449,38 @@ nav {
     backdrop-filter: blur(18px);
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
     transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.35s ease, background 0.35s ease;
+    cursor: pointer;
 }
 
 .exercise-slide:hover {
     transform: translateY(-5px);
     border-color: color-mix(in srgb, var(--primary) 35%, transparent);
     background: rgba(255, 255, 255, 0.055);
+}
+
+.exercise-slide:focus-visible,
+.exercise-row:focus-visible,
+.exercise-step-button:focus-visible,
+.exercise-modal-close:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary) 75%, white 10%);
+    outline-offset: 4px;
+}
+
+@keyframes selectedExerciseGlow {
+    0% {
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 0 0 rgba(224, 184, 91, 0);
+    }
+    45% {
+        box-shadow: 0 28px 78px rgba(0, 0, 0, 0.38), 0 0 36px color-mix(in srgb, var(--primary) 36%, transparent);
+    }
+    100% {
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 0 0 rgba(224, 184, 91, 0);
+    }
+}
+
+.exercise-slide.is-selected {
+    border-color: color-mix(in srgb, var(--primary) 58%, transparent);
+    animation: selectedExerciseGlow 1.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .exercise-slide img {
@@ -578,6 +604,7 @@ nav {
     display: flex;
     justify-content: space-between;
     border-bottom: 1px dashed rgba(255,255,255,0.06);
+    cursor: pointer;
 }
 
 .exercise-row:last-child {
@@ -623,6 +650,280 @@ nav {
 .ex-reps {
     color: var(--primary);
     text-align: right;
+    font-weight: 700;
+}
+
+@keyframes modalStepIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.exercise-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    padding: clamp(16px, 3vw, 38px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+
+.exercise-modal.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.exercise-modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(circle at 18% 16%, color-mix(in srgb, var(--primary) 16%, transparent), transparent 28%),
+        radial-gradient(circle at 88% 78%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 30%),
+        rgba(3, 5, 3, 0.78);
+    backdrop-filter: blur(18px);
+}
+
+.exercise-modal-panel {
+    position: relative;
+    z-index: 1;
+    width: min(1120px, calc(100vw - 32px));
+    max-height: min(850px, calc(100dvh - 32px));
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(360px, 1.05fr);
+    align-items: center;
+    gap: clamp(22px, 4vw, 44px);
+    overflow: auto;
+    padding: clamp(18px, 3vw, 34px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 34px;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.035)),
+        color-mix(in srgb, var(--article-bg) 86%, black 14%);
+    box-shadow: 0 42px 120px rgba(0, 0, 0, 0.62), 0 0 42px color-mix(in srgb, var(--primary) 12%, transparent);
+    transform: translateY(18px) scale(0.965);
+    opacity: 0;
+    outline: none;
+    transition: transform 0.36s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.26s ease;
+}
+
+.exercise-modal.is-open .exercise-modal-panel {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+.exercise-modal-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    z-index: 3;
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+    background: rgba(5, 7, 5, 0.78);
+    color: var(--article-cream);
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    line-height: 1;
+    cursor: pointer;
+    backdrop-filter: blur(16px);
+    transition: border-color 0.25s ease, background 0.25s ease, color 0.25s ease;
+}
+
+.exercise-modal-close:hover {
+    border-color: color-mix(in srgb, var(--primary) 54%, transparent);
+    background: rgba(255, 255, 255, 0.09);
+    color: var(--primary);
+}
+
+.exercise-modal-media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    min-height: 0;
+    align-self: center;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 28px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.02)),
+        rgba(0, 0, 0, 0.24);
+}
+
+.exercise-modal-media img {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.exercise-modal-content {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-right: 10px;
+}
+
+.exercise-modal-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.exercise-modal-meta .exercise-chip,
+.exercise-modal-meta .exercise-prescription {
+    margin-bottom: 0;
+}
+
+.exercise-modal-content h2 {
+    margin: 0 0 12px;
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 0.95;
+    text-wrap: balance;
+}
+
+.exercise-modal-content > p {
+    margin: 0 0 22px;
+    color: var(--article-copy);
+    font-size: 1.02rem;
+}
+
+.exercise-steps {
+    position: relative;
+    display: grid;
+    gap: 12px;
+    margin: 0 0 18px;
+    padding: 0;
+    list-style: none;
+}
+
+.exercise-steps::before {
+    content: "";
+    position: absolute;
+    top: 24px;
+    bottom: 24px;
+    left: 23px;
+    width: 1px;
+    background: linear-gradient(180deg, var(--primary), var(--accent));
+    opacity: 0.36;
+}
+
+.exercise-step {
+    position: relative;
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+.exercise-modal.is-open .exercise-step {
+    animation: modalStepIn 0.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--step-delay, 0ms);
+}
+
+.exercise-step-button {
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 46px 1fr;
+    align-items: center;
+    gap: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.04);
+    color: var(--article-copy);
+    font: inherit;
+    text-align: left;
+    padding: 12px 14px;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.exercise-step-button:hover {
+    border-color: rgba(255, 255, 255, 0.18);
+    background: rgba(255, 255, 255, 0.065);
+}
+
+.exercise-step-count {
+    width: 34px;
+    height: 34px;
+    display: grid;
+    place-items: center;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.07);
+    color: var(--primary);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.exercise-step-copy {
+    color: var(--article-cream);
+    font-weight: 700;
+    overflow-wrap: anywhere;
+}
+
+.exercise-step.is-active .exercise-step-button {
+    border-color: color-mix(in srgb, var(--primary) 48%, transparent);
+    background:
+        linear-gradient(135deg, color-mix(in srgb, var(--primary) 13%, transparent), rgba(255, 255, 255, 0.055));
+    box-shadow: 0 0 26px color-mix(in srgb, var(--primary) 18%, transparent);
+}
+
+.exercise-step.is-active .exercise-step-count {
+    background: linear-gradient(135deg, var(--primary), var(--accent));
+    color: #08100b;
+}
+
+.exercise-cues {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+    margin-top: 8px;
+}
+
+.exercise-cue-card {
+    min-width: 0;
+    border: 1px solid color-mix(in srgb, var(--accent) 30%, rgba(255, 255, 255, 0.08));
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.04);
+    padding: 18px;
+}
+
+.exercise-cue-card.is-warning {
+    border-color: color-mix(in srgb, #ee6b42 38%, rgba(255, 255, 255, 0.08));
+}
+
+.exercise-cue-card span {
+    display: block;
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.exercise-cue-card p {
+    margin: 8px 0 0;
+    color: var(--article-cream);
     font-weight: 700;
 }
 
@@ -723,6 +1024,20 @@ footer {
 
     .exercise-track {
         grid-auto-columns: minmax(300px, 84%);
+    }
+
+    .exercise-modal-panel {
+        grid-template-columns: 1fr;
+        width: min(720px, calc(100vw - 28px));
+    }
+
+    .exercise-modal-media {
+        aspect-ratio: 16 / 9;
+        min-height: 0;
+    }
+
+    .exercise-modal-media img {
+        max-height: none;
     }
 
     .content-band {
@@ -861,6 +1176,60 @@ footer {
         grid-column: 2;
         text-align: left;
     }
+
+    .exercise-modal {
+        padding: 12px;
+    }
+
+    .exercise-modal-panel {
+        width: 100%;
+        max-height: calc(100dvh - 24px);
+        gap: 18px;
+        border-radius: 24px;
+        padding: 14px;
+    }
+
+    .exercise-modal-close {
+        top: 12px;
+        right: 12px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .exercise-modal-media {
+        aspect-ratio: 16 / 10;
+        min-height: 0;
+        border-radius: 18px;
+    }
+
+    .exercise-modal-content {
+        padding-right: 0;
+    }
+
+    .exercise-modal-content h2 {
+        font-size: 1.78rem;
+        line-height: 1.05;
+    }
+
+    .exercise-modal-content > p {
+        font-size: 0.96rem;
+    }
+
+    .exercise-step-button {
+        grid-template-columns: 40px 1fr;
+        gap: 10px;
+        padding: 11px;
+        border-radius: 16px;
+    }
+
+    .exercise-step-count {
+        width: 30px;
+        height: 30px;
+    }
+
+    .exercise-cues {
+        grid-template-columns: 1fr;
+    }
     
     footer {
         flex-direction: column;
@@ -869,4 +1238,34 @@ footer {
         text-align: center;
     }
     .footer-col { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .exercise-slide,
+    .exercise-row,
+    .exercise-modal,
+    .exercise-modal-panel,
+    .exercise-step-button {
+        transition: none;
+    }
+
+    .exercise-modal-panel {
+        transform: none;
+    }
+
+    .exercise-modal.is-open .exercise-modal-panel {
+        transform: none;
+    }
+
+    .exercise-modal.is-open .exercise-step,
+    .exercise-step {
+        opacity: 1;
+        transform: none;
+        animation: none;
+    }
+
+    .exercise-slide.is-selected {
+        animation: none;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28), 0 0 30px color-mix(in srgb, var(--primary) 20%, transparent);
+    }
 }

@@ -3,7 +3,115 @@ document.addEventListener('DOMContentLoaded', () => {
     initMagneticHover();
     initScrollProgress();
     initExerciseCarousels();
+    initExerciseGuides();
 });
+
+const EXERCISE_GUIDES = {
+    'low-bar-squat': {
+        title: 'Barbell Low Bar Back Squat',
+        workout: 'Workout A',
+        prescription: '3 sets x 8-10 reps',
+        steps: [
+            'Setup bar across rear shoulders',
+            'Brace and unlock hips',
+            'Squat with knees tracking over toes',
+            'Drive up through midfoot'
+        ],
+        cue: 'keep chest proud and bar tight.',
+        avoid: 'knees collapsing inward.'
+    },
+    'bench-press': {
+        title: 'Barbell Bench Press',
+        workout: 'Workout A',
+        prescription: '3 sets x 8-10 reps',
+        steps: [
+            'Plant feet and set shoulder blades',
+            'Grip bar evenly',
+            'Lower to lower chest with control',
+            'Press up without losing shoulder position'
+        ],
+        cue: 'keep wrists stacked.',
+        avoid: 'bouncing the bar.'
+    },
+    'bent-over-row': {
+        title: 'Barbell Bent Over Row',
+        workout: 'Workout A',
+        prescription: '3 sets x 8-10 reps',
+        steps: [
+            'Hinge to a strong flat-back position',
+            'Let bar hang below shoulders',
+            'Pull elbows back toward lower ribs',
+            'Lower under control'
+        ],
+        cue: 'torso stays still.',
+        avoid: 'turning it into a shrug.'
+    },
+    'lateral-raise': {
+        title: 'Dumbbell Lateral Raise',
+        workout: 'Workout A',
+        prescription: '3 sets x 12-15 reps',
+        steps: [
+            'Stand tall with soft elbows',
+            'Raise dumbbells out to sides',
+            'Stop around shoulder height',
+            'Lower slowly'
+        ],
+        cue: 'lead with elbows.',
+        avoid: 'swinging with momentum.'
+    },
+    'romanian-deadlift': {
+        title: 'Barbell Romanian Deadlift',
+        workout: 'Workout B',
+        prescription: '1 set x 5 reps',
+        steps: [
+            'Stand tall with bar close',
+            'Push hips back with slight knee bend',
+            'Lower until hamstrings load',
+            'Stand by driving hips forward'
+        ],
+        cue: 'bar stays close.',
+        avoid: 'rounding the back.'
+    },
+    'overhead-press': {
+        title: 'Barbell Overhead Press',
+        workout: 'Workout B',
+        prescription: '3 sets x 8-10 reps',
+        steps: [
+            'Start at upper chest',
+            'Brace ribs and glutes',
+            'Press bar overhead',
+            'Finish stacked over shoulders'
+        ],
+        cue: 'head moves through after bar clears.',
+        avoid: 'leaning far back.'
+    },
+    'lat-pulldown': {
+        title: 'Lat Pulldown',
+        workout: 'Workout B',
+        prescription: '3 sets x 8-10 reps',
+        steps: [
+            'Sit tall and grip wide bar',
+            'Lean slightly back',
+            'Pull elbows down to upper chest',
+            'Return with control'
+        ],
+        cue: 'elbows drive down.',
+        avoid: 'pulling behind the neck.'
+    },
+    'walking-lunge': {
+        title: 'Dumbbell Walking Lunge',
+        workout: 'Workout B',
+        prescription: '3 sets x 10 reps / side',
+        steps: [
+            'Hold dumbbells at sides',
+            'Step forward into a stable stance',
+            'Lower until back knee hovers',
+            'Drive through front foot into next step'
+        ],
+        cue: 'torso tall.',
+        avoid: 'front knee caving inward.'
+    }
+};
 
 function initMagneticCanvas() {
     const canvas = document.getElementById('gravity-bg');
@@ -189,5 +297,237 @@ function initExerciseCarousels() {
         nextButton.addEventListener('click', () => {
             track.scrollBy({ left: getScrollAmount(), behavior: 'smooth' });
         });
+    });
+}
+
+function initExerciseGuides() {
+    const modal = document.getElementById('exerciseGuideModal');
+    if (!modal) return;
+
+    const panel = modal.querySelector('.exercise-modal-panel');
+    const closeButton = modal.querySelector('.exercise-modal-close');
+    const image = modal.querySelector('[data-exercise-modal-image]');
+    const workout = modal.querySelector('[data-exercise-modal-workout]');
+    const reps = modal.querySelector('[data-exercise-modal-reps]');
+    const title = modal.querySelector('[data-exercise-modal-title]');
+    const summary = modal.querySelector('[data-exercise-modal-summary]');
+    const steps = modal.querySelector('[data-exercise-modal-steps]');
+    const cue = modal.querySelector('[data-exercise-modal-cue]');
+    const avoid = modal.querySelector('[data-exercise-modal-avoid]');
+    const closeControls = modal.querySelectorAll('[data-exercise-close]');
+    const cards = Array.from(document.querySelectorAll('.exercise-slide[data-exercise-id]'));
+    const rows = Array.from(document.querySelectorAll('.exercise-row[data-exercise-id]'));
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+    if (!panel || !image || !workout || !reps || !title || !summary || !steps || !cue || !avoid) {
+        return;
+    }
+
+    let lastGuideTrigger = null;
+    let selectedCardTimeout = null;
+    let storedBodyOverflow = '';
+
+    const findCard = (exerciseId) => cards.find((card) => card.dataset.exerciseId === exerciseId);
+    const getMotionBehavior = () => reduceMotion.matches ? 'auto' : 'smooth';
+
+    function focusWithoutScroll(element) {
+        if (!element) return;
+
+        try {
+            element.focus({ preventScroll: true });
+        } catch {
+            element.focus();
+        }
+    }
+
+    function getCardText(card, selector) {
+        return card?.querySelector(selector)?.textContent.trim() || '';
+    }
+
+    function setActiveStep(activeIndex) {
+        steps.querySelectorAll('.exercise-step').forEach((step, index) => {
+            const isActive = index === activeIndex;
+            step.classList.toggle('is-active', isActive);
+            step.querySelector('button')?.setAttribute('aria-pressed', String(isActive));
+        });
+    }
+
+    function buildSteps(guide) {
+        steps.replaceChildren();
+
+        guide.steps.forEach((stepText, index) => {
+            const step = document.createElement('li');
+            const button = document.createElement('button');
+            const count = document.createElement('span');
+            const copy = document.createElement('span');
+
+            step.className = 'exercise-step';
+            step.style.setProperty('--step-delay', `${index * 80}ms`);
+            button.className = 'exercise-step-button';
+            button.type = 'button';
+            button.setAttribute('aria-pressed', 'false');
+            count.className = 'exercise-step-count';
+            count.textContent = String(index + 1).padStart(2, '0');
+            copy.className = 'exercise-step-copy';
+            copy.textContent = stepText;
+
+            button.append(count, copy);
+            step.append(button);
+            steps.append(step);
+
+            button.addEventListener('click', () => {
+                setActiveStep(index);
+            });
+        });
+
+        setActiveStep(0);
+    }
+
+    function populateGuide(exerciseId) {
+        const guide = EXERCISE_GUIDES[exerciseId];
+        const card = findCard(exerciseId);
+        const cardImage = card?.querySelector('img');
+
+        if (!guide || !card || !cardImage) return false;
+
+        image.src = cardImage.getAttribute('src') || '';
+        image.alt = `${cardImage.alt || guide.title} expanded exercise guide`;
+        workout.textContent = guide.workout || getCardText(card, '.exercise-chip');
+        reps.textContent = guide.prescription || getCardText(card, '.exercise-prescription');
+        title.textContent = guide.title;
+        summary.textContent = getCardText(card, '.exercise-slide-body p');
+        cue.textContent = guide.cue;
+        avoid.textContent = guide.avoid;
+        buildSteps(guide);
+
+        return true;
+    }
+
+    function highlightExerciseCard(exerciseId) {
+        const card = findCard(exerciseId);
+        if (!card) return;
+
+        if (selectedCardTimeout) {
+            window.clearTimeout(selectedCardTimeout);
+        }
+
+        cards.forEach((exerciseCard) => exerciseCard.classList.remove('is-selected'));
+        card.classList.add('is-selected');
+
+        selectedCardTimeout = window.setTimeout(() => {
+            card.classList.remove('is-selected');
+        }, reduceMotion.matches ? 900 : 1800);
+    }
+
+    function centerExerciseCard(exerciseId) {
+        const card = findCard(exerciseId);
+        const track = card?.closest('[data-carousel-track]');
+        const section = card?.closest('.exercise-gallery');
+
+        if (!card || !track) return;
+
+        section?.scrollIntoView({ block: 'center', behavior: getMotionBehavior() });
+
+        const targetLeft = card.offsetLeft - ((track.clientWidth - card.clientWidth) / 2);
+        track.scrollTo({
+            left: Math.max(0, targetLeft),
+            behavior: getMotionBehavior()
+        });
+
+        highlightExerciseCard(exerciseId);
+    }
+
+    function openGuide(exerciseId, trigger) {
+        if (!populateGuide(exerciseId)) return;
+
+        lastGuideTrigger = trigger instanceof HTMLElement ? trigger : null;
+        storedBodyOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+
+        window.requestAnimationFrame(() => {
+            const focusTarget = closeButton || panel;
+            focusWithoutScroll(focusTarget);
+            window.setTimeout(() => focusWithoutScroll(focusTarget), 80);
+        });
+    }
+
+    function closeGuide() {
+        if (!modal.classList.contains('is-open')) return;
+
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = storedBodyOverflow;
+
+        if (lastGuideTrigger?.isConnected) {
+            focusWithoutScroll(lastGuideTrigger);
+        }
+    }
+
+    function openFromCard(card) {
+        const exerciseId = card.dataset.exerciseId;
+        openGuide(exerciseId, card);
+    }
+
+    function openFromRow(row) {
+        const exerciseId = row.dataset.exerciseId;
+        centerExerciseCard(exerciseId);
+        window.setTimeout(() => {
+            openGuide(exerciseId, row);
+        }, reduceMotion.matches ? 0 : 320);
+    }
+
+    function handleKeyboardOpen(event, openAction) {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
+
+        event.preventDefault();
+        openAction();
+    }
+
+    function trapModalFocus(event) {
+        if (event.key !== 'Tab' || !modal.classList.contains('is-open')) return;
+
+        const focusable = Array.from(modal.querySelectorAll('button, [href], [tabindex]:not([tabindex="-1"])'))
+            .filter((element) => !element.hasAttribute('disabled') && element.offsetParent !== null);
+
+        if (!focusable.length) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (event.shiftKey && document.activeElement === first) {
+            event.preventDefault();
+            last.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+            event.preventDefault();
+            first.focus();
+        }
+    }
+
+    cards.forEach((card) => {
+        card.addEventListener('click', () => openFromCard(card));
+        card.addEventListener('keydown', (event) => {
+            handleKeyboardOpen(event, () => openFromCard(card));
+        });
+    });
+
+    rows.forEach((row) => {
+        row.addEventListener('click', () => openFromRow(row));
+        row.addEventListener('keydown', (event) => {
+            handleKeyboardOpen(event, () => openFromRow(row));
+        });
+    });
+
+    closeControls.forEach((control) => {
+        control.addEventListener('click', closeGuide);
+    });
+
+    modal.addEventListener('keydown', trapModalFocus);
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+            closeGuide();
+        }
     });
 }
