@@ -110,6 +110,266 @@ const EXERCISE_GUIDES = {
         ],
         cue: 'torso tall.',
         avoid: 'front knee caving inward.'
+    },
+    'home-floor-press': {
+        title: 'Dumbbell Floor Press',
+        workout: 'Upper Day',
+        prescription: '4 sets x 10-15 reps',
+        steps: [
+            'Lie on the floor with dumbbells over chest',
+            'Plant feet and tuck elbows slightly',
+            'Lower until upper arms touch the floor',
+            'Press up over shoulders'
+        ],
+        cue: 'keep shoulder blades pinned to the floor.',
+        avoid: 'bouncing elbows off the floor.'
+    },
+    'home-pendlay-row': {
+        title: 'Single Arm Dumbbell Pendlay Row',
+        workout: 'Upper Day',
+        prescription: '4 sets x 10-15 reps / side',
+        steps: [
+            'Hinge with one hand braced',
+            'Let the dumbbell start from the floor',
+            'Pull elbow back toward hip',
+            'Set the weight down each rep'
+        ],
+        cue: 'square hips and ribs to the floor.',
+        avoid: 'twisting the torso to lift the weight.'
+    },
+    'home-overhead-press': {
+        title: 'Dumbbell Overhead Press',
+        workout: 'Upper Day',
+        prescription: '3 sets x 10-12 reps',
+        steps: [
+            'Start dumbbells at shoulders',
+            'Brace ribs and glutes',
+            'Press upward with forearms vertical',
+            'Lower to shoulders under control'
+        ],
+        cue: 'wrists stay over elbows.',
+        avoid: 'arching the low back.'
+    },
+    'home-bicep-curl': {
+        title: 'Dumbbell Bicep Curl',
+        workout: 'Upper Day',
+        prescription: '3 sets x 12-15 reps',
+        steps: [
+            'Stand tall with dumbbells by sides',
+            'Keep elbows close to ribs',
+            'Curl without shoulders rolling forward',
+            'Lower slowly to full arm length'
+        ],
+        cue: 'squeeze at the top.',
+        avoid: 'swinging the hips.'
+    },
+    'home-goblet-squat': {
+        title: 'Dumbbell Goblet Squat',
+        workout: 'Lower Day',
+        prescription: '4 sets x 12-20 reps',
+        steps: [
+            'Hold one dumbbell tight at chest',
+            'Set feet just outside hips',
+            'Sit down between the knees',
+            'Drive up through the full foot'
+        ],
+        cue: 'elbows point down.',
+        avoid: 'collapsing the chest.'
+    },
+    'home-double-db-rdl': {
+        title: 'Double Dumbbell Romanian Deadlift',
+        workout: 'Lower Day',
+        prescription: '4 sets x 10-15 reps',
+        steps: [
+            'Hold dumbbells in front of thighs',
+            'Soften knees and brace',
+            'Push hips back with weights close',
+            'Stand by squeezing glutes'
+        ],
+        cue: 'feel hamstrings load.',
+        avoid: 'rounding the back.'
+    },
+    'home-walking-lunge': {
+        title: 'Dumbbell Walking Lunge',
+        workout: 'Lower Day',
+        prescription: '3 sets x 12 reps / side',
+        steps: [
+            'Hold dumbbells at sides',
+            'Step into a long stable stride',
+            'Lower back knee toward floor',
+            'Drive through front foot into next step'
+        ],
+        cue: 'torso stays tall.',
+        avoid: 'stepping too narrow.'
+    },
+    'home-calf-raise': {
+        title: 'Standing Calf Raise',
+        workout: 'Lower Day',
+        prescription: '3 sets x 15-20 reps',
+        steps: [
+            'Stand tall holding dumbbells',
+            'Press through the big toes',
+            'Pause at the top',
+            'Lower heels slowly'
+        ],
+        cue: 'use the full range.',
+        avoid: 'bouncing reps.'
+    },
+    'ppl-bench-press': {
+        title: 'Barbell Bench Press',
+        workout: 'Push Day',
+        prescription: '4 sets x 8-10 reps',
+        steps: [
+            'Plant feet and set shoulder blades',
+            'Grip bar evenly',
+            'Lower to lower chest with control',
+            'Press up without losing shoulder position'
+        ],
+        cue: 'keep wrists stacked.',
+        avoid: 'bouncing the bar.'
+    },
+    'ppl-db-overhead-press': {
+        title: 'Dumbbell Overhead Press',
+        workout: 'Push Day',
+        prescription: '3 sets x 8-12 reps',
+        steps: [
+            'Start dumbbells at shoulders',
+            'Brace ribs and glutes',
+            'Press straight overhead',
+            'Finish with arms stacked over shoulders'
+        ],
+        cue: 'forearms stay vertical.',
+        avoid: 'leaning far back.'
+    },
+    'ppl-incline-db-bench': {
+        title: 'Incline Dumbbell Bench Press',
+        workout: 'Push Day',
+        prescription: '3 sets x 10-12 reps',
+        steps: [
+            'Set bench around 30-45 degrees',
+            'Plant feet and set shoulder blades',
+            'Lower dumbbells to upper chest',
+            'Press up slightly inward'
+        ],
+        cue: 'elbows stay under wrists.',
+        avoid: 'flaring shoulders high.'
+    },
+    'ppl-tricep-pushdown': {
+        title: 'Cable Tricep Pushdown',
+        workout: 'Push Day',
+        prescription: '3 sets x 12-15 reps',
+        steps: [
+            'Set cable high and stand tall',
+            'Pin elbows near ribs',
+            'Press handle down until arms straighten',
+            'Control the return'
+        ],
+        cue: 'elbows stay still.',
+        avoid: 'leaning bodyweight onto the cable.'
+    },
+    'ppl-bent-over-row': {
+        title: 'Barbell Bent Over Row',
+        workout: 'Pull Day',
+        prescription: '4 sets x 8-10 reps',
+        steps: [
+            'Hinge to a strong flat-back position',
+            'Let bar hang below shoulders',
+            'Pull elbows back toward lower ribs',
+            'Lower under control'
+        ],
+        cue: 'torso stays still.',
+        avoid: 'turning it into a shrug.'
+    },
+    'ppl-lat-pulldown': {
+        title: 'Lat Pulldown',
+        workout: 'Pull Day',
+        prescription: '3 sets x 10-12 reps',
+        steps: [
+            'Sit tall and grip the wide bar',
+            'Lean slightly back',
+            'Pull elbows down to upper chest',
+            'Return with control'
+        ],
+        cue: 'elbows drive down.',
+        avoid: 'pulling behind the neck.'
+    },
+    'ppl-face-pull': {
+        title: 'Cable Face Pull',
+        workout: 'Pull Day',
+        prescription: '3 sets x 15 reps',
+        steps: [
+            'Set rope around face height',
+            'Step back with arms extended',
+            'Pull toward nose or forehead',
+            'Rotate thumbs back and control return'
+        ],
+        cue: 'elbows stay high and wide.',
+        avoid: 'shrugging shoulders.'
+    },
+    'ppl-bicep-curl': {
+        title: 'Dumbbell Bicep Curl',
+        workout: 'Pull Day',
+        prescription: '3 sets x 10-12 reps',
+        steps: [
+            'Stand tall with dumbbells by sides',
+            'Keep elbows close to ribs',
+            'Curl without shoulders rolling forward',
+            'Lower slowly to full arm length'
+        ],
+        cue: 'squeeze at the top.',
+        avoid: 'swinging the hips.'
+    },
+    'ppl-back-squat': {
+        title: 'Barbell Back Squat',
+        workout: 'Leg Day',
+        prescription: '4 sets x 6-8 reps',
+        steps: [
+            'Set bar tight across upper back',
+            'Brace before each rep',
+            'Squat with knees tracking over toes',
+            'Drive up through midfoot'
+        ],
+        cue: 'keep pressure through the midfoot.',
+        avoid: 'folding into a good morning.'
+    },
+    'ppl-romanian-deadlift': {
+        title: 'Barbell Romanian Deadlift',
+        workout: 'Leg Day',
+        prescription: '3 sets x 8-10 reps',
+        steps: [
+            'Stand tall with bar close',
+            'Push hips back with slight knee bend',
+            'Lower until hamstrings load',
+            'Stand by driving hips forward'
+        ],
+        cue: 'bar stays close.',
+        avoid: 'rounding the back.'
+    },
+    'ppl-leg-press': {
+        title: 'Leg Press Machine',
+        workout: 'Leg Day',
+        prescription: '3 sets x 10-15 reps',
+        steps: [
+            'Set feet around mid-platform',
+            'Brace and unlock the sled',
+            'Lower knees toward chest with control',
+            'Press without hard-locking knees'
+        ],
+        cue: 'keep full foot on the platform.',
+        avoid: 'hips lifting from the pad.'
+    },
+    'ppl-calf-raise': {
+        title: 'Standing Calf Raise Machine',
+        workout: 'Leg Day',
+        prescription: '4 sets x 15-20 reps',
+        steps: [
+            'Set shoulders under pads',
+            'Lower heels into a stretch',
+            'Drive up to tall toes',
+            'Pause before lowering'
+        ],
+        cue: 'own the stretch at the bottom.',
+        avoid: 'tiny bounce reps.'
     }
 };
 
