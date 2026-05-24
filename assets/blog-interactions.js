@@ -62,7 +62,7 @@ const EXERCISE_GUIDES = {
     'romanian-deadlift': {
         title: 'Barbell Romanian Deadlift',
         workout: 'Workout B',
-        prescription: '1 set x 5 reps',
+        prescription: '3 sets x 8-10 reps',
         steps: [
             'Stand tall with bar close',
             'Push hips back with slight knee bend',
