@@ -203,7 +203,7 @@ const EXERCISE_GUIDES = {
         avoid: 'stepping too narrow.'
     },
     'home-calf-raise': {
-        title: 'Standing Calf Raise',
+        title: 'Standing Calf Raise (Dumbbell)',
         workout: 'Lower Day',
         prescription: '3 sets x 15-20 reps',
         steps: [
@@ -294,7 +294,7 @@ const EXERCISE_GUIDES = {
         avoid: 'pulling behind the neck.'
     },
     'ppl-face-pull': {
-        title: 'Cable Face Pull',
+        title: 'Cable Face Pull (Rope)',
         workout: 'Pull Day',
         prescription: '3 sets x 15 reps',
         steps: [
@@ -412,7 +412,7 @@ const EXERCISE_GUIDES = {
         avoid: 'changing every setting at once.'
     },
     'anxiety-light-chest-press': {
-        title: 'Light Chest Press',
+        title: 'Chest Press Machine',
         workout: 'Push',
         prescription: '2 sets x 8 reps',
         steps: [
@@ -425,7 +425,7 @@ const EXERCISE_GUIDES = {
         avoid: 'locking elbows hard or shrugging.'
     },
     'anxiety-seated-row': {
-        title: 'Seated Row',
+        title: 'Seated Row Machine',
         workout: 'Pull',
         prescription: '2 sets x 8 reps',
         steps: [
@@ -438,7 +438,7 @@ const EXERCISE_GUIDES = {
         avoid: 'jerking the handle with the low back.'
     },
     'anxiety-leg-press': {
-        title: 'Beginner Leg Press',
+        title: 'Leg Press Machine',
         workout: 'Legs',
         prescription: '2 sets x 10 reps',
         steps: [
@@ -542,30 +542,30 @@ const EXERCISE_GUIDES = {
         avoid: 'asking someone to coach your whole workout mid-session.'
     },
     'overweight-chair-sit-to-stand': {
-        title: 'Chair Sit-to-Stand',
+        title: 'Bodyweight Squat to Bench',
         workout: 'Lower body',
         prescription: '2-3 sets x 6-10 reps',
         steps: [
-            'Sit near the front edge of a sturdy chair',
-            'Place feet under knees',
-            'Lean forward slightly and stand tall',
-            'Sit back down under control'
+            'Stand in front of a sturdy bench or chair',
+            'Set feet under hips and brace',
+            'Sit back until hips lightly touch the bench',
+            'Stand by pushing through the full foot'
         ],
-        cue: 'push the floor away through your whole foot.',
-        avoid: 'dropping into the chair at the bottom.'
+        cue: 'tap the bench softly before standing.',
+        avoid: 'plopping down or rocking hard for momentum.'
     },
     'overweight-wall-pushup': {
-        title: 'Wall Push-Up',
+        title: 'Bodyweight Incline Push Up',
         workout: 'Upper body',
         prescription: '2-3 sets x 8-12 reps',
         steps: [
-            'Stand arm-length from a wall',
-            'Place hands slightly wider than shoulders',
-            'Lower chest toward the wall',
-            'Press back without shrugging'
+            'Place hands on a stable bench or rail',
+            'Walk feet back until body forms a straight line',
+            'Lower chest toward the surface',
+            'Press away without shrugging'
         ],
-        cue: 'keep body tall from shoulders to heels.',
-        avoid: 'letting elbows flare straight out.'
+        cue: 'keep shoulders, hips, and heels moving together.',
+        avoid: 'letting hips sag as reps get hard.'
     },
     'overweight-seated-row': {
         title: 'Seated Machine Row',
@@ -581,33 +581,33 @@ const EXERCISE_GUIDES = {
         avoid: 'yanking with the low back.'
     },
     'overweight-recumbent-bike': {
-        title: 'Recumbent Bike',
+        title: 'Air Bike (Assault Bike)',
         workout: 'Cardio',
         prescription: '6-12 easy minutes',
         steps: [
             'Set the seat so knees stay slightly bent',
-            'Choose a light resistance',
-            'Pedal at a pace you can sustain',
-            'Stop while you could still do more'
+            'Start with a light arms-and-legs rhythm',
+            'Keep breathing conversational',
+            'Stop before effort spikes'
         ],
-        cue: 'finish feeling warmed up, not crushed.',
-        avoid: 'starting with sprint intervals.'
+        cue: 'smooth rhythm beats speed.',
+        avoid: 'turning the first minutes into a sprint.'
     },
     'overweight-supported-step-up': {
-        title: 'Supported Step-Up',
+        title: 'Dumbbell Step-Up',
         workout: 'Balance',
         prescription: '2 sets x 5-8 / side',
         steps: [
             'Choose a low stable step',
-            'Hold a rail or wall lightly',
-            'Step up through the front foot',
+            'Hold very light dumbbells, or start unloaded',
+            'Step up through the whole front foot',
             'Step down slowly and reset'
         ],
-        cue: 'make each rep quiet and controlled.',
-        avoid: 'using a step so high you have to lunge.'
+        cue: 'keep the front knee tracking over toes.',
+        avoid: 'pushing hard off the back foot.'
     },
     'overweight-farmer-carry': {
-        title: 'Farmer Carry',
+        title: "Farmer's Carry",
         workout: 'Full body',
         prescription: '3 walks x 20-40 steps',
         steps: [
@@ -633,13 +633,13 @@ const EXERCISE_GUIDES = {
         avoid: 'maxing out before the movement feels clean.'
     },
     'tools-dumbbell-press': {
-        title: 'Dumbbell Press',
+        title: 'Dumbbell Bench Press',
         workout: 'Free-weight push',
         prescription: 'Best for control',
         steps: [
-            'Set shoulder blades before pressing',
-            'Start with dumbbells over elbows',
-            'Lower until upper arms are comfortable',
+            'Lie on a bench and set shoulder blades',
+            'Start with dumbbells stacked over elbows',
+            'Lower until upper arms are just below the bench line',
             'Press without crashing weights together'
         ],
         cue: 'wrists stay stacked over elbows.',
@@ -672,7 +672,7 @@ const EXERCISE_GUIDES = {
         avoid: 'leaning back to finish the rep.'
     },
     'tools-dumbbell-row': {
-        title: 'Dumbbell Row',
+        title: 'One Arm Dumbbell Row',
         workout: 'Free-weight pull',
         prescription: 'Best for home gyms',
         steps: [
@@ -685,7 +685,7 @@ const EXERCISE_GUIDES = {
         avoid: 'twisting the torso for momentum.'
     },
     'tools-goblet-squat': {
-        title: 'Goblet Squat',
+        title: 'Dumbbell Goblet Squat',
         workout: 'Free-weight legs',
         prescription: 'Best for squat practice',
         steps: [
@@ -919,11 +919,11 @@ const EXERCISE_GUIDES = {
         avoid: 'earning rest only after burnout.'
     },
     'bodyweight-incline-pushup': {
-        title: 'Wall or Incline Push-Up',
+        title: 'Incline Push-Up',
         workout: 'Push',
         prescription: '3 sets x 8-15 reps',
         steps: [
-            'Place hands on a wall, bench, or rail',
+            'Place hands on a bench or rail',
             'Walk feet back to a straight body line',
             'Lower chest toward the surface',
             'Press away without shrugging'
@@ -945,30 +945,30 @@ const EXERCISE_GUIDES = {
         avoid: 'cutting depth shorter every rep.'
     },
     'bodyweight-split-squat': {
-        title: 'Split Squat',
+        title: 'Bodyweight Hand Assisted Split Squat',
         workout: 'Single leg',
         prescription: '2-3 sets x 6-12 / side',
         steps: [
-            'Step into a long stable stance',
-            'Keep torso tall',
-            'Lower until back knee approaches the floor',
+            'Step into a long stance near a rail or support',
+            'Hold the support lightly and keep torso tall',
+            'Lower until the back knee approaches the floor',
             'Drive through the front foot to stand'
         ],
         cue: 'move straight down and up.',
         avoid: 'front knee collapsing inward.'
     },
     'bodyweight-inverted-row': {
-        title: 'Inverted or Table Row',
+        title: 'Ring Row',
         workout: 'Pull',
         prescription: '3 sets x 6-12 reps',
         steps: [
-            'Use a sturdy table, bar, or rings',
-            'Set body in a straight line',
-            'Pull chest toward the edge or bar',
+            'Set rings around waist height',
+            'Walk feet forward until body forms a straight line',
+            'Pull chest toward the rings',
             'Lower until arms are long'
         ],
         cue: 'pull elbows toward ribs.',
-        avoid: 'using a wobbly surface.'
+        avoid: 'letting hips sag or rings drift wide.'
     },
     'bodyweight-plank': {
         title: 'Forearm Plank',
