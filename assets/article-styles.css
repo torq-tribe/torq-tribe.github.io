@@ -67,7 +67,7 @@ body.article-page h2,
 body.article-page h3,
 body.article-page h4 {
     font-family: var(--font-heading);
-    letter-spacing: -0.015em;
+    letter-spacing: 0;
     color: var(--article-cream);
 }
 
@@ -1073,8 +1073,8 @@ footer {
     .article-hero {
         width: 100%;
         max-width: 370px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
         padding-left: 14px;
         padding-right: 14px;
         padding-top: 190px;
@@ -1085,14 +1085,15 @@ footer {
         max-width: 100%;
         font-size: 1.85rem;
         line-height: 1.12;
-        overflow-wrap: anywhere;
+        overflow-wrap: break-word;
         text-wrap: wrap;
     }
 
     .article-dek {
         max-width: 100%;
         font-size: 1.05rem;
-        overflow-wrap: anywhere;
+        overflow-wrap: normal;
+        word-break: normal;
     }
 
     .article-hero-copy,
@@ -1100,7 +1101,10 @@ footer {
     .quick-panel,
     .split-picker,
     .gallery-heading {
+        width: 100%;
         max-width: 342px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .carousel-actions {
@@ -1131,8 +1135,8 @@ footer {
     .article-content {
         width: 100%;
         max-width: 370px;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 0;
+        margin-right: 0;
         padding-left: 14px;
         padding-right: 14px;
     }
